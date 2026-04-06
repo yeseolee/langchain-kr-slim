@@ -1,0 +1,55 @@
+{
+  "lc": 1,
+  "type": "constructor",
+  "id": [
+    "langchain",
+    "schema",
+    "runnable",
+    "RunnableSequence"
+  ],
+  "kwargs": {
+    "first": {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain",
+        "prompts",
+        "prompt",
+        "PromptTemplate"
+      ],
+      "kwargs": {
+        "input_variables": [
+          "fruit"
+        ],
+        "template": "{fruit}의 색상이 무엇입니까?",
+        "template_format": "f-string"
+      },
+      "name": "PromptTemplate"
+    },
+    "last": {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "model_name": "openai/gpt-oss-20b:free",
+        "temperature": 0.0,
+        "openai_api_key": {
+          "lc": 1,
+          "type": "secret",
+          "id": [
+            "OPENAI_API_KEY"
+          ]
+        },
+        "openai_api_base": "https://openrouter.ai/api/v1",
+        "max_retries": 3
+      },
+      "name": "ChatOpenAI"
+    }
+  },
+  "name": "RunnableSequence"
+}
