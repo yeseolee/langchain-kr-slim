@@ -286,3 +286,24 @@
 - `10-Retriever/11-CC-EnsembleRetriever.ipynb`
   - 이유: 원본 예제가 `langchain_teddynote` 전용 retriever에 의존함
   - 해결 방안: 현재 추가한 ensemble 로직을 확장하거나 커스텀 compression retriever를 작성
+
+## 11-Reranker
+
+### Ported
+
+- `11-Reranker/01-Cross-Encoder-Reranker.ipynb` -> [11-Reranker/01-Cross-Encoder-Reranker.py](/home/lys74/DEV/langchain-cookbook/11-Reranker/01-Cross-Encoder-Reranker.py)
+- 실습 데이터 복사 -> [11-Reranker/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/11-Reranker/data/appendix-keywords.txt)
+
+### Blocked
+
+- `11-Reranker/02-Cohere-Reranker.ipynb`
+  - 이유: Cohere 전용 API 예제임
+  - 해결 방안: 로컬 cross-encoder 또는 OpenRouter 기반 judge 체인으로 대체
+
+- `11-Reranker/03-Jina-Reranker.ipynb`
+  - 이유: Jina 전용 API/패키지에 의존함
+  - 해결 방안: 로컬 reranker 모델 또는 다른 오픈소스 reranker로 대체
+
+- `11-Reranker/04-FlashRank-Reranker.ipynb`
+  - 이유: `flashrank` 패키지가 현재 기본 구성에 없음
+  - 해결 방안: `flashrank` 추가 설치 후 별도 실습으로 분리하거나 현재 추가한 cross-encoder 예제로 대체
