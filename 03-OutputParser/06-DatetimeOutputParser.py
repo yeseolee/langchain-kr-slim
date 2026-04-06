@@ -4,6 +4,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import ClassVar
 
 from langchain_core.output_parsers import BaseOutputParser
 from langchain_core.prompts import PromptTemplate
@@ -17,7 +18,7 @@ from langchain_cookbook.example_utils import make_chat_model
 
 
 class DateOnlyOutputParser(BaseOutputParser[datetime]):
-    format = "%Y-%m-%d"
+    format: ClassVar[str] = "%Y-%m-%d"
 
     def get_format_instructions(self) -> str:
         return "반드시 YYYY-MM-DD 형식의 날짜만 출력하세요."

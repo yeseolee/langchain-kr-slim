@@ -23,7 +23,7 @@ _, store = build_inmemory_store(documents)
 
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "주어진 문맥만 사용해 질문에 답하세요."),
+        ("system", "주어진 문맥만 사용해 질문에 답하세요. 답변은 두 문장 이내로 짧게 작성하세요."),
         ("human", "질문: {question}\n\n문맥:\n{context}"),
     ]
 )
@@ -35,7 +35,11 @@ chain = (
         "context": itemgetter("question") | retriever | RunnableLambda(format_docs),
     }
     | prompt
-    | make_chat_model(temperature=0)
+    | make_chat_model(
+        temperature=0,
+        timeout=(10, 60),
+        max_completion_tokens=120,
+    )
     | StrOutputParser()
 )
 

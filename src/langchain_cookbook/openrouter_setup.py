@@ -104,12 +104,19 @@ def load_openrouter_settings() -> OpenRouterSettings:
     )
 
 
-def make_chat_model(temperature: float = DEFAULT_TEMPERATURE) -> ChatOpenAI:
+def make_chat_model(
+    temperature: float = DEFAULT_TEMPERATURE,
+    *,
+    timeout: float | tuple[float, float] | None = None,
+    max_completion_tokens: int | None = None,
+) -> ChatOpenAI:
     settings = load_openrouter_settings()
     return ChatOpenAI(
         model=settings.model,
         base_url=settings.base_url,
         api_key=settings.api_key,
         temperature=temperature,
+        timeout=timeout,
         max_retries=MAX_RETRIES,
+        max_completion_tokens=max_completion_tokens,
     )

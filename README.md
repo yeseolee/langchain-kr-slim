@@ -39,13 +39,10 @@ RAG 실습 전제:
 - CUDA 사용 가능 GPU
 - CUDA 지원 PyTorch
 
-## 개발
+## make
 
 ```bash
 make format
 make lint
 make check
 ```
-
-현재 실습은 채팅 모델 호출, 프롬프트 체인, 배치 처리, JSON 후처리, 로컬 Hugging Face GPU 임베딩 기반 RAG까지 포함합니다.
-무료 엔드포인트는 입력이 로깅될 수 있으므로 민감한 데이터는 넣지 않는 것을 권장합니다.
