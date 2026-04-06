@@ -244,3 +244,45 @@
 - `09-VectorStore/03-Pinecone.ipynb`
   - 이유: Pinecone 외부 서비스, 전용 계정, 인덱스 운영 기능에 의존함
   - 해결 방안: Pinecone 전용 실습으로 분리하거나 하이브리드 검색을 로컬 벡터스토어 + BM25 조합으로 재작성
+
+## 10-Retriever
+
+### Ported
+
+- `10-Retriever/01-VectorStoreRetriever.ipynb` -> [10-Retriever/01-VectorStoreRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/01-VectorStoreRetriever.py)
+- `10-Retriever/03-EnsembleRetriever.ipynb` -> [10-Retriever/03-EnsembleRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/03-EnsembleRetriever.py)
+  - 변경: vector 검색 + 간단한 keyword 검색을 결합하는 방식으로 재구성
+- `10-Retriever/05-ParentDocumentRetriever.ipynb` -> [10-Retriever/05-ParentDocumentRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/05-ParentDocumentRetriever.py)
+  - 변경: parent-child chunk 매핑을 직접 구현
+- `10-Retriever/06-MultiQueryRetriever.ipynb` -> [10-Retriever/06-MultiQueryRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/06-MultiQueryRetriever.py)
+- 실습 데이터 복사 -> [10-Retriever/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/10-Retriever/data/appendix-keywords.txt), [10-Retriever/data/ai-story.txt](/home/lys74/DEV/langchain-cookbook/10-Retriever/data/ai-story.txt)
+
+### Blocked
+
+- `10-Retriever/02-ContextualCompressionRetriever.ipynb`
+  - 이유: compressor 계열 구현과 관련 provider/패키지 의존성이 현재 기본 구성에 없음
+  - 해결 방안: 로컬 요약/압축 체인으로 재작성
+
+- `10-Retriever/04-LongContextReorder.ipynb`
+  - 이유: 전용 reorder 구현이 현재 기본 구성에 없음
+  - 해결 방안: 검색 결과 재배치 로직을 직접 구현해 대체
+
+- `10-Retriever/07-MultiVectorRetriever.ipynb`
+  - 이유: 다중 표현(summary/original) 저장소 조합을 별도 구현해야 함
+  - 해결 방안: 요약 문서와 원문 문서를 별도 store로 관리하는 커스텀 retriever로 재작성
+
+- `10-Retriever/08-SelfQueryRetriever.ipynb`
+  - 이유: structured query translator 및 metadata-aware retriever 구성이 필요함
+  - 해결 방안: JSON query parser + metadata filter 조합으로 재작성
+
+- `10-Retriever/09-TimeWeightedVectorStoreRetriever.ipynb`
+  - 이유: 시간 가중 점수 계산을 위한 별도 retriever 구현이 필요함
+  - 해결 방안: timestamp metadata 기반 가중치 함수를 직접 추가
+
+- `10-Retriever/10-Kiwi-BM25Retriever.ipynb`
+  - 이유: `kiwipiepy`, `konlpy` 등 한국어 형태소 분석기 의존성이 없음
+  - 해결 방안: 한국어 BM25 패키지와 토크나이저를 추가한 뒤 별도 재작성
+
+- `10-Retriever/11-CC-EnsembleRetriever.ipynb`
+  - 이유: 원본 예제가 `langchain_teddynote` 전용 retriever에 의존함
+  - 해결 방안: 현재 추가한 ensemble 로직을 확장하거나 커스텀 compression retriever를 작성
