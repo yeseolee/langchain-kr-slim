@@ -38,3 +38,22 @@
 - `02-Prompt/04-Personal-Prompts.ipynb`
   - 이유: 사용자 계정 기준 prompt 업로드(`hub.push`) 중심 예제
   - 해결 방안: 현재 저장소 내부 YAML/JSON prompt registry로 대체하거나 LangSmith Hub 자격 증명 후 재작성
+
+## 03-OutputParser
+
+### Ported
+
+- `03-OutputParser/01-PydanticOuputParser.ipynb` -> [03-OutputParser/01-PydanticOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/01-PydanticOutputParser.py)
+- `03-OutputParser/02-CommaSeparatedListOutputParser.ipynb` -> [03-OutputParser/02-CommaSeparatedListOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/02-CommaSeparatedListOutputParser.py)
+- `03-OutputParser/03-StructuredOutputParser.ipynb` -> [03-OutputParser/03-StructuredOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/03-StructuredOutputParser.py)
+- `03-OutputParser/04-JsonOutputParser.ipynb` -> [03-OutputParser/04-JsonOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/04-JsonOutputParser.py)
+- `03-OutputParser/06-DatetimeOutputParser.ipynb` -> [03-OutputParser/06-DatetimeOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/06-DatetimeOutputParser.py)
+- `03-OutputParser/07-EnumOutputParser.ipynb` -> [03-OutputParser/07-EnumOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/07-EnumOutputParser.py)
+- `03-OutputParser/08-OutputFixingParser.ipynb` -> [03-OutputParser/08-OutputFixingParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/08-OutputFixingParser.py)
+
+### Blocked
+
+- `03-OutputParser/05-PandasDataFrameOutputParser.ipynb`
+  - 이유: 예제의 핵심인 `PandasDataFrameOutputParser`는 현재 LangChain 1.2 기본 API에서 제거됨
+  - 이유: deprecated parser를 그대로 복원하기보다 DataFrame agent 또는 SQL chain으로 재구성하는 편이 현재 버전과 더 잘 맞음
+  - 해결 방안: `pandas` + dataframe agent 기반 질의 예제로 재작성하거나 SQLite/SQL chain 예제로 대체
