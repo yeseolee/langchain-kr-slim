@@ -1,6 +1,8 @@
 # LangChain 한국어 입문 실습
 
-OpenRouter를 통해 LangChain을 처음 배우는 사람을 위한 한국어 주피터 노트북 실습입니다. 기본 라우터는 `openai/gpt-oss-20b:free`를 사용하고, RAG 예제는 로컬 Hugging Face 임베딩을 GPU로 실행합니다.
+이 저장소는 [teddylee777/langchain-kr](https://github.com/teddylee777/langchain-kr) 저장소의 실습 예제를 바탕으로, OpenRouter 무료 모델과 로컬 임베딩을 사용해 유료 provider 의존성을 최소화하고 간단하게 따라갈 수 있도록 정리한 한국어 LangChain 실습입니다.
+
+기본 라우터는 `openai/gpt-oss-20b:free`를 사용하고, RAG 예제는 로컬 Hugging Face 임베딩을 GPU로 실행합니다.
 
 ## 구성
 
