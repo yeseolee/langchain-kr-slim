@@ -14,8 +14,12 @@ if str(SRC_PATH) not in sys.path:
 from langchain_cookbook.example_utils import make_chat_model
 
 
-prompt = PromptTemplate.from_template("{topic}을 한 문단으로 설명하세요.")
-model = make_chat_model(temperature=0).configurable_fields(
+prompt = PromptTemplate.from_template("{topic}을 세 문장 이내로 설명하세요.")
+model = make_chat_model(
+    temperature=0,
+    timeout=(10, 90),
+    max_completion_tokens=160,
+).configurable_fields(
     temperature=ConfigurableField(
         id="response_temperature",
         name="Temperature",
