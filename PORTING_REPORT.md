@@ -176,3 +176,25 @@
 - `06-DocumentLoader/13-Llamaparser.ipynb`
   - 이유: LlamaParse 외부 서비스 및 별도 패키지가 필요함
   - 해결 방안: LlamaParse 자격 증명과 패키지 추가 후 별도 문서 파싱 트랙으로 분리
+
+## 07-TextSplitter
+
+### Ported
+
+- `07-TextSplitter/01-CharacterTextSplitter.ipynb` -> [07-TextSplitter/01-CharacterTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/01-CharacterTextSplitter.py)
+- `07-TextSplitter/02-RecursiveCharacterTextSplitter.ipynb` -> [07-TextSplitter/02-RecursiveCharacterTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/02-RecursiveCharacterTextSplitter.py)
+- `07-TextSplitter/05-CodeSplitter.ipynb` -> [07-TextSplitter/05-CodeSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/05-CodeSplitter.py)
+- `07-TextSplitter/06-MarkdownHeaderTextSplitter.ipynb` -> [07-TextSplitter/06-MarkdownHeaderTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/06-MarkdownHeaderTextSplitter.py)
+- `07-TextSplitter/07-HTMLHeaderTextSplitter.ipynb` -> [07-TextSplitter/07-HTMLHeaderTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/07-HTMLHeaderTextSplitter.py)
+- `07-TextSplitter/08-RecursiveJsonSplitter.ipynb` -> [07-TextSplitter/08-RecursiveJsonSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/08-RecursiveJsonSplitter.py)
+- 실습 데이터 복사 -> [07-TextSplitter/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/data/appendix-keywords.txt)
+
+### Blocked
+
+- `07-TextSplitter/03-TokenTextSplitter.ipynb`
+  - 이유: 원본 예제는 `nltk`, `transformers` 등 추가 토크나이저 의존성에 기대고 있음
+  - 해결 방안: `tiktoken` 또는 Hugging Face tokenizer 기반 예제로 별도 재작성
+
+- `07-TextSplitter/04-SemanticChunker.ipynb`
+  - 이유: `langchain_experimental` 의 semantic chunker와 OpenAI 임베딩 예제에 의존함
+  - 해결 방안: 로컬 임베딩 기반 semantic splitter를 별도 구현하거나 관련 패키지를 추가
