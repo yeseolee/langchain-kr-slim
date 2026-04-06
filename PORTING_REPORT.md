@@ -57,3 +57,42 @@
   - 이유: 예제의 핵심인 `PandasDataFrameOutputParser`는 현재 LangChain 1.2 기본 API에서 제거됨
   - 이유: deprecated parser를 그대로 복원하기보다 DataFrame agent 또는 SQL chain으로 재구성하는 편이 현재 버전과 더 잘 맞음
   - 해결 방안: `pandas` + dataframe agent 기반 질의 예제로 재작성하거나 SQLite/SQL chain 예제로 대체
+
+## 04-Model
+
+### Ported
+
+- `04-Model/01-Chat-Models.ipynb` -> [04-Model/01-Chat-Models.py](/home/lys74/DEV/langchain-cookbook/04-Model/01-Chat-Models.py)
+- `04-Model/02-Cache.ipynb` -> [04-Model/02-Cache.py](/home/lys74/DEV/langchain-cookbook/04-Model/02-Cache.py)
+- `04-Model/03-ModelSerialization.ipynb` -> [04-Model/03-ModelSerialization.py](/home/lys74/DEV/langchain-cookbook/04-Model/03-ModelSerialization.py)
+- `04-Model/04-TokenUsage.ipynb` -> [04-Model/04-TokenUsage.py](/home/lys74/DEV/langchain-cookbook/04-Model/04-TokenUsage.py)
+
+### Blocked
+
+- `04-Model/05-Google-Generative-AI.ipynb`
+  - 이유: Gemini 전용 provider 예제로 OpenRouter 단일 라우터 기준과 맞지 않음
+  - 해결 방안: 같은 프롬프트/출력 흐름을 OpenRouter 모델 예제로 재작성
+
+- `04-Model/06-HuggingFace-Endpoint.ipynb`
+  - 이유: Hugging Face Inference Endpoint 계정 및 외부 endpoint 설정이 필요함
+  - 해결 방안: OpenRouter 모델 호출 예제 또는 로컬 Hugging Face 파이프라인 예제로 대체
+
+- `04-Model/07-HuggingFace-Local.ipynb`
+  - 이유: 로컬 생성 모델 다운로드와 별도 GPU/메모리 준비가 필요하며 현재 저장소의 기본 LLM 구성이 아님
+  - 해결 방안: OpenRouter 기본 모델 유지 또는 별도 로컬 LLM 트랙을 추가
+
+- `04-Model/08-Huggingface-Pipelines.ipynb`
+  - 이유: Hugging Face 생성 파이프라인 기반 예제로 현재 기본 LLM 구성과 다름
+  - 해결 방안: `transformers.pipeline` 로컬 예제를 별도 섹션으로 분리하거나 OpenRouter 체인으로 대체
+
+- `04-Model/09-Ollama.ipynb`
+  - 이유: Ollama 로컬 서버가 필요함
+  - 해결 방안: OpenRouter 모델 예제로 대체하거나 Ollama 선택 설치 가이드를 별도 문서로 분리
+
+- `04-Model/10-GPT4ALL.ipynb`
+  - 이유: GPT4All 런타임과 모델 파일이 필요함
+  - 해결 방안: 로컬 LLM 전용 섹션으로 분리하거나 OpenRouter 예제로 대체
+
+- `04-Model/11-Gemini-Video.ipynb`
+  - 이유: Gemini 비디오 입력 전용 멀티모달 예제로 현재 기본 모델과 직접 호환되지 않음
+  - 해결 방안: OpenRouter 멀티모달 지원 모델로 재작성하거나 별도 Gemini 전용 실습으로 유지
