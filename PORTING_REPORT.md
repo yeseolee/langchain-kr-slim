@@ -422,3 +422,64 @@
 - `15-Agent/12-React-Agent.ipynb`
   - 이유: LangGraph 및 전용 react agent 흐름에 의존함
   - 해결 방안: LangGraph 의존성을 추가한 뒤 별도 agent graph 트랙으로 분리
+
+## 16-Evaluations
+
+### Ported
+
+- `16-Evaluations/01-Test-Dataset-Generator-RAGAS.ipynb` -> [16-Evaluations/01-Test-Dataset-Generator-RAGAS.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/01-Test-Dataset-Generator-RAGAS.py)
+  - 변경: RAGAS testset generator 대신 로컬 문서 기반 평가셋 생성 스크립트로 대체
+- `16-Evaluations/02-Evaluation-Using-RAGAS.ipynb` -> [16-Evaluations/02-Evaluation-Using-RAGAS.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/02-Evaluation-Using-RAGAS.py)
+  - 변경: RAGAS metric 대신 heuristic overlap + 로컬 임베딩 similarity 평가로 대체
+- 공용 평가용 RAG helper 추가 -> [16-Evaluations/myrag.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/myrag.py)
+- 샘플 평가 데이터 추가 -> [16-Evaluations/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/16-Evaluations/data/appendix-keywords.txt), [16-Evaluations/data/rag_eval.csv](/home/lys74/DEV/langchain-cookbook/16-Evaluations/data/rag_eval.csv)
+
+### Blocked
+
+- `16-Evaluations/03-Translate-HF-Upload.ipynb`
+  - 이유: Hugging Face dataset 업로드와 외부 서비스 의존성이 필요함
+  - 해결 방안: 로컬 번역 결과 저장 예제로 분리하거나 HF 자격 증명 추가 후 재작성
+
+- `16-Evaluations/04-LangSmith-Dataset.ipynb`
+  - 이유: LangSmith 서비스 의존
+  - 해결 방안: 로컬 CSV/JSONL dataset 관리 예제로 대체
+
+- `16-Evaluations/05-LangSmith-LLM-as-Judge.ipynb`
+  - 이유: LangSmith evaluator 실행 환경 의존
+  - 해결 방안: 로컬 judge chain으로 대체
+
+- `16-Evaluations/06-LangSmith-Embedding-Distance-Evaluation.ipynb`
+  - 이유: LangSmith 평가 서비스 의존
+  - 해결 방안: 현재 추가한 로컬 embedding similarity 평가로 대체 가능
+
+- `16-Evaluations/07-LangSmith-Custom-LLM-Evaluation.ipynb`
+  - 이유: LangSmith evaluator registry 의존
+  - 해결 방안: 로컬 custom evaluator 함수로 재작성
+
+- `16-Evaluations/08-LangSmith-Heuristic-Evaluation.ipynb`
+  - 이유: LangSmith 실행 환경과 추가 평가 패키지 의존
+  - 해결 방안: 로컬 heuristic scorer 스크립트로 재작성
+
+- `16-Evaluations/09-LangSmith-Compare-Evaluation.ipynb`
+  - 이유: LangSmith 비교 평가 서비스 의존
+  - 해결 방안: 두 모델 출력 CSV를 비교하는 로컬 스크립트로 재작성
+
+- `16-Evaluations/10-LangSmith-Summary-Evaluation.ipynb`
+  - 이유: LangSmith summary evaluator 의존
+  - 해결 방안: 로컬 요약 평가 지표 스크립트로 재작성
+
+- `16-Evaluations/11-LangSmith-Groundedness-Evaluation.ipynb`
+  - 이유: LangSmith groundedness evaluator 의존
+  - 해결 방안: context overlap 기반 groundedness evaluator로 재작성
+
+- `16-Evaluations/12-LangSmith-Pairwise-Evaluation.ipynb`
+  - 이유: LangSmith pairwise evaluator 의존
+  - 해결 방안: 두 답변을 비교하는 로컬 judge chain으로 재작성
+
+- `16-Evaluations/13-LangSmith-Repeat-Evaluation.ipynb`
+  - 이유: LangSmith 반복 실행 관리 의존
+  - 해결 방안: 로컬 batch evaluator 스크립트로 재작성
+
+- `16-Evaluations/14-LangSmith-Online-Evaluation.ipynb`
+  - 이유: LangSmith online evaluation 환경 의존
+  - 해결 방안: 애플리케이션 로그 기반 offline evaluator로 재작성
