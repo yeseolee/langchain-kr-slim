@@ -41,6 +41,17 @@ RAG 실습 전제:
 - CUDA 사용 가능 GPU
 - CUDA 지원 PyTorch
 
+## 출처 및 라이선스 고지
+
+- 이 저장소는 [teddylee777/langchain-kr](https://github.com/teddylee777/langchain-kr) 저장소의 실습 예제를 바탕으로 재구성했습니다.
+- 원본 저장소의 고지에 따르면, 원저작물은 Apache License 2.0을 따르며 저작권 표시는 다음과 같습니다.
+  - `Copyright 2024 테디노트 (teddylee777@gmail.com)`
+- Apache License 2.0 전문은 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)에서 확인할 수 있습니다.
+- 블로그, 유튜브 등 온라인 매체에 인용하거나 2차 활용할 때는 원본 저장소와 본 저장소를 함께 출처로 명시해 주세요.
+- 강의, 강연 등 상업적 목적의 활용이 원저작물 범위와 연결되는 경우에는 원저작권자와 먼저 협의하시기 바랍니다.
+- 이 저장소는 원본 실습을 학습용으로 정리한 파생 작업입니다. 저작권, 출처 표기, 수정 또는 삭제 요청이 접수되면 내용을 확인한 뒤 필요한 범위에서 관련 파일을 수정하거나 제거하겠습니다.
+- 본 저장소의 내용은 참고용으로 제공되며, 명시적 또는 묵시적 보증 없이 제공됩니다.
+
 ## make
 
 ```bash
