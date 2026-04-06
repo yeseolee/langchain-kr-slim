@@ -129,3 +129,50 @@
 - `05-Memory/07-VectorStoreRetrieverMemory.ipynb`
   - 이유: 예전 vectorstore memory API와 FAISS 예제가 현재 기본 구성에 포함되어 있지 않음
   - 해결 방안: 로컬 임베딩 + `InMemoryVectorStore` 또는 FAISS를 추가해 검색형 메모리로 재작성
+
+## 06-DocumentLoader
+
+### Ported
+
+- `06-DocumentLoader/00-Document-Loader.ipynb` -> [06-DocumentLoader/00-Document-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/00-Document-Loader.py)
+- `06-DocumentLoader/03-CSV-Loader.ipynb` -> [06-DocumentLoader/03-CSV-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/03-CSV-Loader.py)
+- `06-DocumentLoader/07-WebBase-Loader.ipynb` -> [06-DocumentLoader/07-WebBase-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/07-WebBase-Loader.py)
+- `06-DocumentLoader/08-TXT-Loader.ipynb` -> [06-DocumentLoader/08-TXT-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/08-TXT-Loader.py)
+- `06-DocumentLoader/09-JSON-Loader.ipynb` -> [06-DocumentLoader/09-JSON-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/09-JSON-Loader.py)
+- `06-DocumentLoader/11-Directory-Loader.ipynb` -> [06-DocumentLoader/11-Directory-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/11-Directory-Loader.py)
+- 공용 문서 로더 유틸 추가 -> [src/langchain_cookbook/document_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/document_utils.py)
+- 실습 데이터 복사 -> [06-DocumentLoader/data/reference.txt](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/reference.txt), [06-DocumentLoader/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/appendix-keywords.txt), [06-DocumentLoader/data/people.json](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/people.json), [06-DocumentLoader/data/titanic.csv](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/titanic.csv), [06-DocumentLoader/data/client.html](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/client.html)
+
+### Blocked
+
+- `06-DocumentLoader/01-PDF-Loader.ipynb`
+  - 이유: PDF 전용 loader 의존성이 현재 기본 구성에 없음
+  - 해결 방안: `pypdf` 또는 `langchain_community` 기반 PDF loader 추가
+
+- `06-DocumentLoader/02-HWP-Loader.ipynb`
+  - 이유: HWP 전용 loader가 필요함
+  - 해결 방안: HWP parser 패키지 또는 전용 loader 추가
+
+- `06-DocumentLoader/04-Excel-Loader.ipynb`
+  - 이유: Excel loader 및 관련 의존성이 현재 기본 구성에 없음
+  - 해결 방안: `pandas` + `openpyxl` 또는 community loader 추가
+
+- `06-DocumentLoader/05-Word-Loader.ipynb`
+  - 이유: Word 전용 loader 의존성이 현재 기본 구성에 없음
+  - 해결 방안: `docx2txt` 또는 community loader 추가
+
+- `06-DocumentLoader/06-PowerPoint-Loader.ipynb`
+  - 이유: PowerPoint 전용 loader 의존성이 현재 기본 구성에 없음
+  - 해결 방안: `python-pptx` 또는 community loader 추가
+
+- `06-DocumentLoader/10-Arxiv-Loader.ipynb`
+  - 이유: 외부 Arxiv API 및 전용 loader가 필요함
+  - 해결 방안: `arxiv`/community loader 추가 후 재작성
+
+- `06-DocumentLoader/12-UpstageLayoutAnalysisLoader.ipynb`
+  - 이유: Upstage 전용 API 예제임
+  - 해결 방안: OpenRouter 기준 실습 범위에서 제외하거나 별도 provider 트랙으로 분리
+
+- `06-DocumentLoader/13-Llamaparser.ipynb`
+  - 이유: LlamaParse 외부 서비스 및 별도 패키지가 필요함
+  - 해결 방안: LlamaParse 자격 증명과 패키지 추가 후 별도 문서 파싱 트랙으로 분리
