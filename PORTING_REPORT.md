@@ -96,3 +96,36 @@
 - `04-Model/11-Gemini-Video.ipynb`
   - 이유: Gemini 비디오 입력 전용 멀티모달 예제로 현재 기본 모델과 직접 호환되지 않음
   - 해결 방안: OpenRouter 멀티모달 지원 모델로 재작성하거나 별도 Gemini 전용 실습으로 유지
+
+## 05-Memory
+
+### Ported
+
+- `05-Memory/01-ConversationBufferMemory.ipynb` -> [05-Memory/01-ConversationBufferMemory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/01-ConversationBufferMemory.py)
+- `05-Memory/02-ConversationBufferWindowMemory.ipynb` -> [05-Memory/02-ConversationBufferWindowMemory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/02-ConversationBufferWindowMemory.py)
+- `05-Memory/08-LCEL-add-memory.ipynb` -> [05-Memory/08-LCEL-add-memory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/08-LCEL-add-memory.py)
+- `05-Memory/09-Memory-using-SQLite.ipynb` -> [05-Memory/09-Memory-using-SQLite.py](/home/lys74/DEV/langchain-cookbook/05-Memory/09-Memory-using-SQLite.py)
+- `05-Memory/10-Conversation-With-History.ipynb` -> [05-Memory/10-Conversation-With-History.py](/home/lys74/DEV/langchain-cookbook/05-Memory/10-Conversation-With-History.py)
+- 공용 SQLite 대화 기록 유틸 추가 -> [src/langchain_cookbook/history_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/history_utils.py)
+
+### Blocked
+
+- `05-Memory/03-ConversationTokenBufferMemory.ipynb`
+  - 이유: legacy `ConversationTokenBufferMemory` API가 제거되었고 모델별 토큰 계산 정책 차이를 직접 다뤄야 함
+  - 해결 방안: 최근 메시지를 직접 trim 하거나 별도 토큰 카운터를 붙인 커스텀 history 클래스로 재작성
+
+- `05-Memory/04-ConversationEntityMemory.ipynb`
+  - 이유: legacy entity memory API가 제거됨
+  - 해결 방안: named entity 추출 체인 + 별도 state store 조합으로 재작성
+
+- `05-Memory/05-ConversationKnowledgeGraph.ipynb`
+  - 이유: legacy knowledge graph memory API가 제거됨
+  - 해결 방안: graph store 또는 structured state store를 직접 두고 엔티티/관계를 추출하는 방식으로 재작성
+
+- `05-Memory/06-ConversationSummary.ipynb`
+  - 이유: 예전 요약 메모리 API가 제거되었고 요약 갱신 로직을 직접 구성해야 함
+  - 해결 방안: `RunnableWithMessageHistory`에 요약 업데이트 체인을 조합한 커스텀 summary memory로 재작성
+
+- `05-Memory/07-VectorStoreRetrieverMemory.ipynb`
+  - 이유: 예전 vectorstore memory API와 FAISS 예제가 현재 기본 구성에 포함되어 있지 않음
+  - 해결 방안: 로컬 임베딩 + `InMemoryVectorStore` 또는 FAISS를 추가해 검색형 메모리로 재작성
