@@ -198,3 +198,33 @@
 - `07-TextSplitter/04-SemanticChunker.ipynb`
   - 이유: `langchain_experimental` 의 semantic chunker와 OpenAI 임베딩 예제에 의존함
   - 해결 방안: 로컬 임베딩 기반 semantic splitter를 별도 구현하거나 관련 패키지를 추가
+
+## 08-Embeddings
+
+### Ported
+
+- `08-Embeddings/01-OpenAIEmbeddings.ipynb` -> [08-Embeddings/01-OpenAIEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/01-OpenAIEmbeddings.py)
+  - 변경: OpenAI 임베딩 대신 로컬 Hugging Face 임베딩으로 대체
+- `08-Embeddings/02-CacheBackedEmbeddings.ipynb` -> [08-Embeddings/02-CacheBackedEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/02-CacheBackedEmbeddings.py)
+  - 변경: 제거된 legacy cache API 대신 디스크 캐시 래퍼로 대체
+- `08-Embeddings/03-HuggingFaceEmbeddings.ipynb` -> [08-Embeddings/03-HuggingFaceEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/03-HuggingFaceEmbeddings.py)
+- 공용 임베딩 유틸 추가 -> [src/langchain_cookbook/embedding_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/embedding_utils.py)
+- 실습 데이터 복사 -> [08-Embeddings/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/08-Embeddings/data/appendix-keywords.txt)
+
+### Blocked
+
+- `08-Embeddings/04-UpstageEmbeddings.ipynb`
+  - 이유: Upstage 전용 API 예제임
+  - 해결 방안: OpenRouter/로컬 임베딩 기준에서는 제외하거나 provider 전용 트랙으로 분리
+
+- `08-Embeddings/05-OllamaEmbeddings.ipynb`
+  - 이유: Ollama 로컬 서버가 필요함
+  - 해결 방안: Ollama 선택 설치 시 별도 실습으로 분리
+
+- `08-Embeddings/06-llamacpp.ipynb`
+  - 이유: llama.cpp 런타임과 모델 파일이 필요함
+  - 해결 방안: 로컬 임베딩/로컬 LLM 별도 트랙으로 분리
+
+- `08-Embeddings/07-GPT4ALL.ipynb`
+  - 이유: GPT4All 런타임과 모델 파일이 필요함
+  - 해결 방안: 로컬 모델 런타임 가이드를 별도 추가
