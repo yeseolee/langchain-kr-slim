@@ -78,6 +78,110 @@ def load_html_document(path: str | Path) -> list[Document]:
     ]
 
 
+def load_pdf_documents(path: str | Path) -> list[Document]:
+    from pypdf import PdfReader
+
+    file_path = Path(path)
+    reader = PdfReader(str(file_path))
+
+    documents: list[Document] = []
+    for page_number, page in enumerate(reader.pages, start=1):
+        text = page.extract_text() or ""
+        documents.append(
+            Document(
+                page_content=text.strip(),
+                metadata={"source": str(file_path), "page": page_number},
+            )
+        )
+    return documents
+
+
+def load_excel_documents(path: str | Path) -> list[Document]:
+    import pandas as pd
+
+    file_path = Path(path)
+    sheets = pd.read_excel(file_path, sheet_name=None)
+
+    documents: list[Document] = []
+    for sheet_name, dataframe in sheets.items():
+        for row_index, row in dataframe.fillna("").iterrows():
+            documents.append(
+                Document(
+                    page_content="\n".join(
+                        f"{column}: {value}" for column, value in row.items()
+                    ),
+                    metadata={
+                        "source": str(file_path),
+                        "sheet": sheet_name,
+                        "row": int(row_index) + 1,
+                    },
+                )
+            )
+    return documents
+
+
+def load_word_documents(path: str | Path) -> list[Document]:
+    import docx2txt
+
+    file_path = Path(path)
+    return [
+        Document(
+            page_content=docx2txt.process(str(file_path)).strip(),
+            metadata={"source": str(file_path)},
+        )
+    ]
+
+
+def load_pptx_documents(path: str | Path) -> list[Document]:
+    from pptx import Presentation
+
+    file_path = Path(path)
+    presentation = Presentation(str(file_path))
+    documents: list[Document] = []
+
+    for slide_number, slide in enumerate(presentation.slides, start=1):
+        texts: list[str] = []
+        for shape in slide.shapes:
+            text = getattr(shape, "text", "").strip()
+            if text:
+                texts.append(text)
+
+        documents.append(
+            Document(
+                page_content="\n".join(texts),
+                metadata={"source": str(file_path), "slide": slide_number},
+            )
+        )
+    return documents
+
+
+def load_arxiv_documents(query: str, *, load_max_docs: int = 2) -> list[Document]:
+    import arxiv
+
+    search = arxiv.Search(
+        query=query,
+        max_results=load_max_docs,
+        sort_by=arxiv.SortCriterion.Relevance,
+    )
+
+    documents: list[Document] = []
+    client = arxiv.Client()
+    for index, result in enumerate(client.results(search), start=1):
+        documents.append(
+            Document(
+                page_content=result.summary.strip(),
+                metadata={
+                    "source": result.entry_id,
+                    "title": result.title,
+                    "published": result.published.isoformat(),
+                    "authors": [author.name for author in result.authors],
+                    "rank": index,
+                },
+            )
+        )
+    return documents
+
+
 def load_directory_documents(directory: str | Path) -> list[Document]:
     base_dir = Path(directory)
     documents: list[Document] = []
@@ -93,14 +197,27 @@ def load_directory_documents(directory: str | Path) -> list[Document]:
             documents.extend(load_json_documents(path))
         elif path.suffix in {".html", ".htm"}:
             documents.extend(load_html_document(path))
+        elif path.suffix == ".pdf":
+            documents.extend(load_pdf_documents(path))
+        elif path.suffix in {".xlsx", ".xls"}:
+            documents.extend(load_excel_documents(path))
+        elif path.suffix == ".docx":
+            documents.extend(load_word_documents(path))
+        elif path.suffix == ".pptx":
+            documents.extend(load_pptx_documents(path))
 
     return documents
 
 
 __all__ = [
+    "load_arxiv_documents",
     "load_csv_documents",
     "load_directory_documents",
+    "load_excel_documents",
     "load_html_document",
     "load_json_documents",
+    "load_pdf_documents",
+    "load_pptx_documents",
     "load_text_document",
+    "load_word_documents",
 ]

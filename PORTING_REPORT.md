@@ -4,482 +4,316 @@
 
 ### Ported
 
-- `01-Basic/02-OpenAI-LLM.ipynb` -> [01-Basic/02-OpenRouter-LLM.py](/home/lys74/DEV/langchain-cookbook/01-Basic/02-OpenRouter-LLM.py)
-- `01-Basic/03-LCEL.Ipynb` -> [01-Basic/03-LCEL.py](/home/lys74/DEV/langchain-cookbook/01-Basic/03-LCEL.py)
-- `01-Basic/04-LCEL-Advanced.ipynb` -> [01-Basic/04-LCEL-Advanced.py](/home/lys74/DEV/langchain-cookbook/01-Basic/04-LCEL-Advanced.py)
-- `01-Basic/05-Runnable.ipynb` -> [01-Basic/05-Runnable.py](/home/lys74/DEV/langchain-cookbook/01-Basic/05-Runnable.py)
+- `01-Basic/02-OpenAI-LLM.ipynb` -> `01-Basic/02-OpenRouter-LLM.py`
+- `01-Basic/03-LCEL.ipynb` -> `01-Basic/03-LCEL.py`
+- `01-Basic/04-LCEL-Advanced.ipynb` -> `01-Basic/04-LCEL-Advanced.py`
+- `01-Basic/05-Runnable.ipynb` -> `01-Basic/05-Runnable.py`
 
 ### Removed
 
 - `01-Basic/01-OpenAI-APIKey.ipynb`
-  - 이유: 사용자 요청에 따라 API 키 발급/설정 안내 코드는 제외
-
-### Not Ported Yet
-
-- 없음
+  - API 키 발급 및 설정 안내는 범위에서 제외
 
 ## 02-Prompt
 
 ### Ported
 
-- `02-Prompt/01-PromptTemplate.ipynb` -> [02-Prompt/01-PromptTemplate.py](/home/lys74/DEV/langchain-cookbook/02-Prompt/01-PromptTemplate.py)
-- `02-Prompt/02-FewShotTemplates.ipynb` -> [02-Prompt/02-FewShotTemplates.py](/home/lys74/DEV/langchain-cookbook/02-Prompt/02-FewShotTemplates.py)
-- `02-Prompt/05-ChatPromptTemplate.ipynb` -> [02-Prompt/05-ChatPromptTemplate.py](/home/lys74/DEV/langchain-cookbook/02-Prompt/05-ChatPromptTemplate.py)
-- `02-Prompt/prompts/capital.yaml` -> [02-Prompt/prompts/capital.yaml](/home/lys74/DEV/langchain-cookbook/02-Prompt/prompts/capital.yaml)
-- `02-Prompt/prompts/fruit_color.yaml` -> [02-Prompt/prompts/fruit_color.yaml](/home/lys74/DEV/langchain-cookbook/02-Prompt/prompts/fruit_color.yaml)
+- `02-Prompt/01-PromptTemplate.ipynb` -> `02-Prompt/01-PromptTemplate.py`
+- `02-Prompt/02-FewShotTemplates.ipynb` -> `02-Prompt/02-FewShotTemplates.py`
+- `02-Prompt/05-ChatPromptTemplate.ipynb` -> `02-Prompt/05-ChatPromptTemplate.py`
 
-### Blocked
+### Moved To 17-OtherProvider
 
-- `02-Prompt/03-LangChain-Hub.ipynb`
-  - 이유: 현재 LangChain 1.2 환경에서는 예전 `langchain.hub` 경로가 기본 제공되지 않음
-  - 이유: prompt 업로드/버전 관리 시 외부 Hub 서비스 의존
-  - 해결 방안: LangSmith prompt hub 또는 로컬 prompt registry 파일 기반으로 재작성
-
-- `02-Prompt/04-Personal-Prompts.ipynb`
-  - 이유: 사용자 계정 기준 prompt 업로드(`hub.push`) 중심 예제
-  - 해결 방안: 현재 저장소 내부 YAML/JSON prompt registry로 대체하거나 LangSmith Hub 자격 증명 후 재작성
+- `02-Prompt/03-LangChain-Hub.ipynb` -> `17-OtherProvider/02-Prompt-03-LangSmith-Hub.py`
+- `02-Prompt/04-Personal-Prompts.ipynb` -> `17-OtherProvider/02-Prompt-04-Personal-Prompts.py`
 
 ## 03-OutputParser
 
 ### Ported
 
-- `03-OutputParser/01-PydanticOuputParser.ipynb` -> [03-OutputParser/01-PydanticOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/01-PydanticOutputParser.py)
-- `03-OutputParser/02-CommaSeparatedListOutputParser.ipynb` -> [03-OutputParser/02-CommaSeparatedListOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/02-CommaSeparatedListOutputParser.py)
-- `03-OutputParser/03-StructuredOutputParser.ipynb` -> [03-OutputParser/03-StructuredOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/03-StructuredOutputParser.py)
-- `03-OutputParser/04-JsonOutputParser.ipynb` -> [03-OutputParser/04-JsonOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/04-JsonOutputParser.py)
-- `03-OutputParser/06-DatetimeOutputParser.ipynb` -> [03-OutputParser/06-DatetimeOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/06-DatetimeOutputParser.py)
-- `03-OutputParser/07-EnumOutputParser.ipynb` -> [03-OutputParser/07-EnumOutputParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/07-EnumOutputParser.py)
-- `03-OutputParser/08-OutputFixingParser.ipynb` -> [03-OutputParser/08-OutputFixingParser.py](/home/lys74/DEV/langchain-cookbook/03-OutputParser/08-OutputFixingParser.py)
-
-### Blocked
-
-- `03-OutputParser/05-PandasDataFrameOutputParser.ipynb`
-  - 이유: 예제의 핵심인 `PandasDataFrameOutputParser`는 현재 LangChain 1.2 기본 API에서 제거됨
-  - 이유: deprecated parser를 그대로 복원하기보다 DataFrame agent 또는 SQL chain으로 재구성하는 편이 현재 버전과 더 잘 맞음
-  - 해결 방안: `pandas` + dataframe agent 기반 질의 예제로 재작성하거나 SQLite/SQL chain 예제로 대체
+- `03-OutputParser/01-PydanticOuputParser.ipynb` -> `03-OutputParser/01-PydanticOutputParser.py`
+- `03-OutputParser/02-CommaSeparatedListOutputParser.ipynb` -> `03-OutputParser/02-CommaSeparatedListOutputParser.py`
+- `03-OutputParser/03-StructuredOutputParser.ipynb` -> `03-OutputParser/03-StructuredOutputParser.py`
+- `03-OutputParser/04-JsonOutputParser.ipynb` -> `03-OutputParser/04-JsonOutputParser.py`
+- `03-OutputParser/05-PandasDataFrameOutputParser.ipynb` -> `03-OutputParser/05-PandasDataFrameOutputParser.py`
+  - 제거된 parser 대신 `pandas` + 구조화된 실행 계획으로 재작성
+- `03-OutputParser/06-DatetimeOutputParser.ipynb` -> `03-OutputParser/06-DatetimeOutputParser.py`
+- `03-OutputParser/07-EnumOutputParser.ipynb` -> `03-OutputParser/07-EnumOutputParser.py`
+- `03-OutputParser/08-OutputFixingParser.ipynb` -> `03-OutputParser/08-OutputFixingParser.py`
 
 ## 04-Model
 
 ### Ported
 
-- `04-Model/01-Chat-Models.ipynb` -> [04-Model/01-Chat-Models.py](/home/lys74/DEV/langchain-cookbook/04-Model/01-Chat-Models.py)
-- `04-Model/02-Cache.ipynb` -> [04-Model/02-Cache.py](/home/lys74/DEV/langchain-cookbook/04-Model/02-Cache.py)
-- `04-Model/03-ModelSerialization.ipynb` -> [04-Model/03-ModelSerialization.py](/home/lys74/DEV/langchain-cookbook/04-Model/03-ModelSerialization.py)
-- `04-Model/04-TokenUsage.ipynb` -> [04-Model/04-TokenUsage.py](/home/lys74/DEV/langchain-cookbook/04-Model/04-TokenUsage.py)
+- `04-Model/01-Chat-Models.ipynb` -> `04-Model/01-Chat-Models.py`
+- `04-Model/02-Cache.ipynb` -> `04-Model/02-Cache.py`
+- `04-Model/03-ModelSerialization.ipynb` -> `04-Model/03-ModelSerialization.py`
+- `04-Model/04-TokenUsage.ipynb` -> `04-Model/04-TokenUsage.py`
 
-### Blocked
+### Moved To 17-OtherProvider
+
+- `04-Model/06-HuggingFace-Endpoint.ipynb` -> `17-OtherProvider/04-Model-06-HuggingFace-Endpoint.py`
+
+### Removed
 
 - `04-Model/05-Google-Generative-AI.ipynb`
-  - 이유: Gemini 전용 provider 예제로 OpenRouter 단일 라우터 기준과 맞지 않음
-  - 해결 방안: 같은 프롬프트/출력 흐름을 OpenRouter 모델 예제로 재작성
+  - 일회성 유료 provider 예제
+- `04-Model/11-Gemini-Video.ipynb`
+  - 멀티모달 + Gemini 전용 예제
 
-- `04-Model/06-HuggingFace-Endpoint.ipynb`
-  - 이유: Hugging Face Inference Endpoint 계정 및 외부 endpoint 설정이 필요함
-  - 해결 방안: OpenRouter 모델 호출 예제 또는 로컬 Hugging Face 파이프라인 예제로 대체
+### Deferred
 
 - `04-Model/07-HuggingFace-Local.ipynb`
-  - 이유: 로컬 생성 모델 다운로드와 별도 GPU/메모리 준비가 필요하며 현재 저장소의 기본 LLM 구성이 아님
-  - 해결 방안: OpenRouter 기본 모델 유지 또는 별도 로컬 LLM 트랙을 추가
-
 - `04-Model/08-Huggingface-Pipelines.ipynb`
-  - 이유: Hugging Face 생성 파이프라인 기반 예제로 현재 기본 LLM 구성과 다름
-  - 해결 방안: `transformers.pipeline` 로컬 예제를 별도 섹션으로 분리하거나 OpenRouter 체인으로 대체
-
 - `04-Model/09-Ollama.ipynb`
-  - 이유: Ollama 로컬 서버가 필요함
-  - 해결 방안: OpenRouter 모델 예제로 대체하거나 Ollama 선택 설치 가이드를 별도 문서로 분리
-
 - `04-Model/10-GPT4ALL.ipynb`
-  - 이유: GPT4All 런타임과 모델 파일이 필요함
-  - 해결 방안: 로컬 LLM 전용 섹션으로 분리하거나 OpenRouter 예제로 대체
-
-- `04-Model/11-Gemini-Video.ipynb`
-  - 이유: Gemini 비디오 입력 전용 멀티모달 예제로 현재 기본 모델과 직접 호환되지 않음
-  - 해결 방안: OpenRouter 멀티모달 지원 모델로 재작성하거나 별도 Gemini 전용 실습으로 유지
+  - 대용량 모델 다운로드 또는 별도 런타임 준비가 필요함
 
 ## 05-Memory
 
 ### Ported
 
-- `05-Memory/01-ConversationBufferMemory.ipynb` -> [05-Memory/01-ConversationBufferMemory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/01-ConversationBufferMemory.py)
-- `05-Memory/02-ConversationBufferWindowMemory.ipynb` -> [05-Memory/02-ConversationBufferWindowMemory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/02-ConversationBufferWindowMemory.py)
-- `05-Memory/08-LCEL-add-memory.ipynb` -> [05-Memory/08-LCEL-add-memory.py](/home/lys74/DEV/langchain-cookbook/05-Memory/08-LCEL-add-memory.py)
-- `05-Memory/09-Memory-using-SQLite.ipynb` -> [05-Memory/09-Memory-using-SQLite.py](/home/lys74/DEV/langchain-cookbook/05-Memory/09-Memory-using-SQLite.py)
-- `05-Memory/10-Conversation-With-History.ipynb` -> [05-Memory/10-Conversation-With-History.py](/home/lys74/DEV/langchain-cookbook/05-Memory/10-Conversation-With-History.py)
-- 공용 SQLite 대화 기록 유틸 추가 -> [src/langchain_cookbook/history_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/history_utils.py)
-
-### Blocked
-
-- `05-Memory/03-ConversationTokenBufferMemory.ipynb`
-  - 이유: legacy `ConversationTokenBufferMemory` API가 제거되었고 모델별 토큰 계산 정책 차이를 직접 다뤄야 함
-  - 해결 방안: 최근 메시지를 직접 trim 하거나 별도 토큰 카운터를 붙인 커스텀 history 클래스로 재작성
-
-- `05-Memory/04-ConversationEntityMemory.ipynb`
-  - 이유: legacy entity memory API가 제거됨
-  - 해결 방안: named entity 추출 체인 + 별도 state store 조합으로 재작성
-
-- `05-Memory/05-ConversationKnowledgeGraph.ipynb`
-  - 이유: legacy knowledge graph memory API가 제거됨
-  - 해결 방안: graph store 또는 structured state store를 직접 두고 엔티티/관계를 추출하는 방식으로 재작성
-
-- `05-Memory/06-ConversationSummary.ipynb`
-  - 이유: 예전 요약 메모리 API가 제거되었고 요약 갱신 로직을 직접 구성해야 함
-  - 해결 방안: `RunnableWithMessageHistory`에 요약 업데이트 체인을 조합한 커스텀 summary memory로 재작성
-
-- `05-Memory/07-VectorStoreRetrieverMemory.ipynb`
-  - 이유: 예전 vectorstore memory API와 FAISS 예제가 현재 기본 구성에 포함되어 있지 않음
-  - 해결 방안: 로컬 임베딩 + `InMemoryVectorStore` 또는 FAISS를 추가해 검색형 메모리로 재작성
+- `05-Memory/01-ConversationBufferMemory.ipynb` -> `05-Memory/01-ConversationBufferMemory.py`
+- `05-Memory/02-ConversationBufferWindowMemory.ipynb` -> `05-Memory/02-ConversationBufferWindowMemory.py`
+- `05-Memory/03-ConversationTokenBufferMemory.ipynb` -> `05-Memory/03-ConversationTokenBufferMemory.py`
+  - 제거된 API 대신 직접 trim 로직으로 재작성
+- `05-Memory/04-ConversationEntityMemory.ipynb` -> `05-Memory/04-ConversationEntityMemory.py`
+  - entity store + 추출 체인으로 재작성
+- `05-Memory/05-ConversationKnowledgeGraph.ipynb` -> `05-Memory/05-ConversationKnowledgeGraph.py`
+  - triple 추출 방식으로 재작성
+- `05-Memory/06-ConversationSummary.ipynb` -> `05-Memory/06-ConversationSummary.py`
+  - rolling summary 체인으로 재작성
+- `05-Memory/07-VectorStoreRetrieverMemory.ipynb` -> `05-Memory/07-VectorStoreRetrieverMemory.py`
+  - 로컬 임베딩 + `InMemoryVectorStore`로 재작성
+- `05-Memory/08-LCEL-add-memory.ipynb` -> `05-Memory/08-LCEL-add-memory.py`
+- `05-Memory/09-Memory-using-SQLite.ipynb` -> `05-Memory/09-Memory-using-SQLite.py`
+- `05-Memory/10-Conversation-With-History.ipynb` -> `05-Memory/10-Conversation-With-History.py`
 
 ## 06-DocumentLoader
 
 ### Ported
 
-- `06-DocumentLoader/00-Document-Loader.ipynb` -> [06-DocumentLoader/00-Document-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/00-Document-Loader.py)
-- `06-DocumentLoader/03-CSV-Loader.ipynb` -> [06-DocumentLoader/03-CSV-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/03-CSV-Loader.py)
-- `06-DocumentLoader/07-WebBase-Loader.ipynb` -> [06-DocumentLoader/07-WebBase-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/07-WebBase-Loader.py)
-- `06-DocumentLoader/08-TXT-Loader.ipynb` -> [06-DocumentLoader/08-TXT-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/08-TXT-Loader.py)
-- `06-DocumentLoader/09-JSON-Loader.ipynb` -> [06-DocumentLoader/09-JSON-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/09-JSON-Loader.py)
-- `06-DocumentLoader/11-Directory-Loader.ipynb` -> [06-DocumentLoader/11-Directory-Loader.py](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/11-Directory-Loader.py)
-- 공용 문서 로더 유틸 추가 -> [src/langchain_cookbook/document_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/document_utils.py)
-- 실습 데이터 복사 -> [06-DocumentLoader/data/reference.txt](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/reference.txt), [06-DocumentLoader/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/appendix-keywords.txt), [06-DocumentLoader/data/people.json](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/people.json), [06-DocumentLoader/data/titanic.csv](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/titanic.csv), [06-DocumentLoader/data/client.html](/home/lys74/DEV/langchain-cookbook/06-DocumentLoader/data/client.html)
+- `06-DocumentLoader/00-Document-Loader.ipynb` -> `06-DocumentLoader/00-Document-Loader.py`
+- `06-DocumentLoader/01-PDF-Loader.ipynb` -> `06-DocumentLoader/01-PDF-Loader.py`
+  - `pypdf` 기반
+- `06-DocumentLoader/03-CSV-Loader.ipynb` -> `06-DocumentLoader/03-CSV-Loader.py`
+- `06-DocumentLoader/04-Excel-Loader.ipynb` -> `06-DocumentLoader/04-Excel-Loader.py`
+  - `pandas` + `openpyxl` 기반
+- `06-DocumentLoader/05-Word-Loader.ipynb` -> `06-DocumentLoader/05-Word-Loader.py`
+  - `docx2txt` 기반
+- `06-DocumentLoader/06-PowerPoint-Loader.ipynb` -> `06-DocumentLoader/06-PowerPoint-Loader.py`
+  - `python-pptx` 기반
+- `06-DocumentLoader/07-WebBase-Loader.ipynb` -> `06-DocumentLoader/07-WebBase-Loader.py`
+- `06-DocumentLoader/08-TXT-Loader.ipynb` -> `06-DocumentLoader/08-TXT-Loader.py`
+- `06-DocumentLoader/09-JSON-Loader.ipynb` -> `06-DocumentLoader/09-JSON-Loader.py`
+- `06-DocumentLoader/10-Arxiv-Loader.ipynb` -> `06-DocumentLoader/10-Arxiv-Loader.py`
+  - 무료 `arxiv` API 기반
+- `06-DocumentLoader/11-Directory-Loader.ipynb` -> `06-DocumentLoader/11-Directory-Loader.py`
 
-### Blocked
-
-- `06-DocumentLoader/01-PDF-Loader.ipynb`
-  - 이유: PDF 전용 loader 의존성이 현재 기본 구성에 없음
-  - 해결 방안: `pypdf` 또는 `langchain_community` 기반 PDF loader 추가
-
-- `06-DocumentLoader/02-HWP-Loader.ipynb`
-  - 이유: HWP 전용 loader가 필요함
-  - 해결 방안: HWP parser 패키지 또는 전용 loader 추가
-
-- `06-DocumentLoader/04-Excel-Loader.ipynb`
-  - 이유: Excel loader 및 관련 의존성이 현재 기본 구성에 없음
-  - 해결 방안: `pandas` + `openpyxl` 또는 community loader 추가
-
-- `06-DocumentLoader/05-Word-Loader.ipynb`
-  - 이유: Word 전용 loader 의존성이 현재 기본 구성에 없음
-  - 해결 방안: `docx2txt` 또는 community loader 추가
-
-- `06-DocumentLoader/06-PowerPoint-Loader.ipynb`
-  - 이유: PowerPoint 전용 loader 의존성이 현재 기본 구성에 없음
-  - 해결 방안: `python-pptx` 또는 community loader 추가
-
-- `06-DocumentLoader/10-Arxiv-Loader.ipynb`
-  - 이유: 외부 Arxiv API 및 전용 loader가 필요함
-  - 해결 방안: `arxiv`/community loader 추가 후 재작성
+### Removed
 
 - `06-DocumentLoader/12-UpstageLayoutAnalysisLoader.ipynb`
-  - 이유: Upstage 전용 API 예제임
-  - 해결 방안: OpenRouter 기준 실습 범위에서 제외하거나 별도 provider 트랙으로 분리
-
 - `06-DocumentLoader/13-Llamaparser.ipynb`
-  - 이유: LlamaParse 외부 서비스 및 별도 패키지가 필요함
-  - 해결 방안: LlamaParse 자격 증명과 패키지 추가 후 별도 문서 파싱 트랙으로 분리
+  - 외부 유료/전용 서비스 종속
+
+### Deferred
+
+- `06-DocumentLoader/02-HWP-Loader.ipynb`
+  - HWP 전용 파서 의존성 필요
 
 ## 07-TextSplitter
 
 ### Ported
 
-- `07-TextSplitter/01-CharacterTextSplitter.ipynb` -> [07-TextSplitter/01-CharacterTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/01-CharacterTextSplitter.py)
-- `07-TextSplitter/02-RecursiveCharacterTextSplitter.ipynb` -> [07-TextSplitter/02-RecursiveCharacterTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/02-RecursiveCharacterTextSplitter.py)
-- `07-TextSplitter/05-CodeSplitter.ipynb` -> [07-TextSplitter/05-CodeSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/05-CodeSplitter.py)
-- `07-TextSplitter/06-MarkdownHeaderTextSplitter.ipynb` -> [07-TextSplitter/06-MarkdownHeaderTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/06-MarkdownHeaderTextSplitter.py)
-- `07-TextSplitter/07-HTMLHeaderTextSplitter.ipynb` -> [07-TextSplitter/07-HTMLHeaderTextSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/07-HTMLHeaderTextSplitter.py)
-- `07-TextSplitter/08-RecursiveJsonSplitter.ipynb` -> [07-TextSplitter/08-RecursiveJsonSplitter.py](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/08-RecursiveJsonSplitter.py)
-- 실습 데이터 복사 -> [07-TextSplitter/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/07-TextSplitter/data/appendix-keywords.txt)
-
-### Blocked
-
-- `07-TextSplitter/03-TokenTextSplitter.ipynb`
-  - 이유: 원본 예제는 `nltk`, `transformers` 등 추가 토크나이저 의존성에 기대고 있음
-  - 해결 방안: `tiktoken` 또는 Hugging Face tokenizer 기반 예제로 별도 재작성
-
-- `07-TextSplitter/04-SemanticChunker.ipynb`
-  - 이유: `langchain_experimental` 의 semantic chunker와 OpenAI 임베딩 예제에 의존함
-  - 해결 방안: 로컬 임베딩 기반 semantic splitter를 별도 구현하거나 관련 패키지를 추가
+- `07-TextSplitter/01-CharacterTextSplitter.ipynb` -> `07-TextSplitter/01-CharacterTextSplitter.py`
+- `07-TextSplitter/02-RecursiveCharacterTextSplitter.ipynb` -> `07-TextSplitter/02-RecursiveCharacterTextSplitter.py`
+- `07-TextSplitter/03-TokenTextSplitter.ipynb` -> `07-TextSplitter/03-TokenTextSplitter.py`
+  - `transformers` 토크나이저 기반
+- `07-TextSplitter/04-SemanticChunker.ipynb` -> `07-TextSplitter/04-SemanticChunker.py`
+  - 로컬 임베딩 기반 커스텀 semantic chunking 으로 재작성
+- `07-TextSplitter/05-CodeSplitter.ipynb` -> `07-TextSplitter/05-CodeSplitter.py`
+- `07-TextSplitter/06-MarkdownHeaderTextSplitter.ipynb` -> `07-TextSplitter/06-MarkdownHeaderTextSplitter.py`
+- `07-TextSplitter/07-HTMLHeaderTextSplitter.ipynb` -> `07-TextSplitter/07-HTMLHeaderTextSplitter.py`
+- `07-TextSplitter/08-RecursiveJsonSplitter.ipynb` -> `07-TextSplitter/08-RecursiveJsonSplitter.py`
 
 ## 08-Embeddings
 
 ### Ported
 
-- `08-Embeddings/01-OpenAIEmbeddings.ipynb` -> [08-Embeddings/01-OpenAIEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/01-OpenAIEmbeddings.py)
-  - 변경: OpenAI 임베딩 대신 로컬 Hugging Face 임베딩으로 대체
-- `08-Embeddings/02-CacheBackedEmbeddings.ipynb` -> [08-Embeddings/02-CacheBackedEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/02-CacheBackedEmbeddings.py)
-  - 변경: 제거된 legacy cache API 대신 디스크 캐시 래퍼로 대체
-- `08-Embeddings/03-HuggingFaceEmbeddings.ipynb` -> [08-Embeddings/03-HuggingFaceEmbeddings.py](/home/lys74/DEV/langchain-cookbook/08-Embeddings/03-HuggingFaceEmbeddings.py)
-- 공용 임베딩 유틸 추가 -> [src/langchain_cookbook/embedding_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/embedding_utils.py)
-- 실습 데이터 복사 -> [08-Embeddings/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/08-Embeddings/data/appendix-keywords.txt)
+- `08-Embeddings/01-OpenAIEmbeddings.ipynb` -> `08-Embeddings/01-OpenAIEmbeddings.py`
+  - 로컬 Hugging Face 임베딩으로 대체
+- `08-Embeddings/02-CacheBackedEmbeddings.ipynb` -> `08-Embeddings/02-CacheBackedEmbeddings.py`
+- `08-Embeddings/03-HuggingFaceEmbeddings.ipynb` -> `08-Embeddings/03-HuggingFaceEmbeddings.py`
 
-### Blocked
+### Removed
 
 - `08-Embeddings/04-UpstageEmbeddings.ipynb`
-  - 이유: Upstage 전용 API 예제임
-  - 해결 방안: OpenRouter/로컬 임베딩 기준에서는 제외하거나 provider 전용 트랙으로 분리
+  - 일회성 유료 provider 예제
+
+### Deferred
 
 - `08-Embeddings/05-OllamaEmbeddings.ipynb`
-  - 이유: Ollama 로컬 서버가 필요함
-  - 해결 방안: Ollama 선택 설치 시 별도 실습으로 분리
-
 - `08-Embeddings/06-llamacpp.ipynb`
-  - 이유: llama.cpp 런타임과 모델 파일이 필요함
-  - 해결 방안: 로컬 임베딩/로컬 LLM 별도 트랙으로 분리
-
 - `08-Embeddings/07-GPT4ALL.ipynb`
-  - 이유: GPT4All 런타임과 모델 파일이 필요함
-  - 해결 방안: 로컬 모델 런타임 가이드를 별도 추가
+  - 대용량 모델 파일 또는 별도 런타임 필요
 
 ## 09-VectorStore
 
 ### Ported
 
-- `09-VectorStore/01-Chroma.ipynb` -> [09-VectorStore/01-Chroma.py](/home/lys74/DEV/langchain-cookbook/09-VectorStore/01-Chroma.py)
-  - 변경: Chroma 대신 `InMemoryVectorStore` 로 CRUD와 검색 흐름을 유지
-- `09-VectorStore/02-FAISS.ipynb` -> [09-VectorStore/02-FAISS.py](/home/lys74/DEV/langchain-cookbook/09-VectorStore/02-FAISS.py)
-  - 변경: FAISS 대신 `InMemoryVectorStore` 로 유사도 검색과 retriever 변환 흐름을 유지
-- 실습 데이터 복사 -> [09-VectorStore/data/nlp-keywords.txt](/home/lys74/DEV/langchain-cookbook/09-VectorStore/data/nlp-keywords.txt), [09-VectorStore/data/finance-keywords.txt](/home/lys74/DEV/langchain-cookbook/09-VectorStore/data/finance-keywords.txt)
+- `09-VectorStore/01-Chroma.ipynb` -> `09-VectorStore/01-Chroma.py`
+- `09-VectorStore/02-FAISS.ipynb` -> `09-VectorStore/02-FAISS.py`
 
-### Blocked
+### Removed
 
 - `09-VectorStore/03-Pinecone.ipynb`
-  - 이유: Pinecone 외부 서비스, 전용 계정, 인덱스 운영 기능에 의존함
-  - 해결 방안: Pinecone 전용 실습으로 분리하거나 하이브리드 검색을 로컬 벡터스토어 + BM25 조합으로 재작성
+  - 일회성 유료 provider 예제
 
 ## 10-Retriever
 
 ### Ported
 
-- `10-Retriever/01-VectorStoreRetriever.ipynb` -> [10-Retriever/01-VectorStoreRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/01-VectorStoreRetriever.py)
-- `10-Retriever/03-EnsembleRetriever.ipynb` -> [10-Retriever/03-EnsembleRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/03-EnsembleRetriever.py)
-  - 변경: vector 검색 + 간단한 keyword 검색을 결합하는 방식으로 재구성
-- `10-Retriever/05-ParentDocumentRetriever.ipynb` -> [10-Retriever/05-ParentDocumentRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/05-ParentDocumentRetriever.py)
-  - 변경: parent-child chunk 매핑을 직접 구현
-- `10-Retriever/06-MultiQueryRetriever.ipynb` -> [10-Retriever/06-MultiQueryRetriever.py](/home/lys74/DEV/langchain-cookbook/10-Retriever/06-MultiQueryRetriever.py)
-- 실습 데이터 복사 -> [10-Retriever/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/10-Retriever/data/appendix-keywords.txt), [10-Retriever/data/ai-story.txt](/home/lys74/DEV/langchain-cookbook/10-Retriever/data/ai-story.txt)
-
-### Blocked
-
-- `10-Retriever/02-ContextualCompressionRetriever.ipynb`
-  - 이유: compressor 계열 구현과 관련 provider/패키지 의존성이 현재 기본 구성에 없음
-  - 해결 방안: 로컬 요약/압축 체인으로 재작성
-
-- `10-Retriever/04-LongContextReorder.ipynb`
-  - 이유: 전용 reorder 구현이 현재 기본 구성에 없음
-  - 해결 방안: 검색 결과 재배치 로직을 직접 구현해 대체
-
-- `10-Retriever/07-MultiVectorRetriever.ipynb`
-  - 이유: 다중 표현(summary/original) 저장소 조합을 별도 구현해야 함
-  - 해결 방안: 요약 문서와 원문 문서를 별도 store로 관리하는 커스텀 retriever로 재작성
-
-- `10-Retriever/08-SelfQueryRetriever.ipynb`
-  - 이유: structured query translator 및 metadata-aware retriever 구성이 필요함
-  - 해결 방안: JSON query parser + metadata filter 조합으로 재작성
-
-- `10-Retriever/09-TimeWeightedVectorStoreRetriever.ipynb`
-  - 이유: 시간 가중 점수 계산을 위한 별도 retriever 구현이 필요함
-  - 해결 방안: timestamp metadata 기반 가중치 함수를 직접 추가
-
-- `10-Retriever/10-Kiwi-BM25Retriever.ipynb`
-  - 이유: `kiwipiepy`, `konlpy` 등 한국어 형태소 분석기 의존성이 없음
-  - 해결 방안: 한국어 BM25 패키지와 토크나이저를 추가한 뒤 별도 재작성
-
-- `10-Retriever/11-CC-EnsembleRetriever.ipynb`
-  - 이유: 원본 예제가 `langchain_teddynote` 전용 retriever에 의존함
-  - 해결 방안: 현재 추가한 ensemble 로직을 확장하거나 커스텀 compression retriever를 작성
+- `10-Retriever/01-VectorStoreRetriever.ipynb` -> `10-Retriever/01-VectorStoreRetriever.py`
+- `10-Retriever/02-ContextualCompressionRetriever.ipynb` -> `10-Retriever/02-ContextualCompressionRetriever.py`
+  - 로컬 요약 압축 체인으로 재작성
+- `10-Retriever/03-EnsembleRetriever.ipynb` -> `10-Retriever/03-EnsembleRetriever.py`
+- `10-Retriever/04-LongContextReorder.ipynb` -> `10-Retriever/04-LongContextReorder.py`
+  - 직접 재배치 로직 구현
+- `10-Retriever/05-ParentDocumentRetriever.ipynb` -> `10-Retriever/05-ParentDocumentRetriever.py`
+- `10-Retriever/06-MultiQueryRetriever.ipynb` -> `10-Retriever/06-MultiQueryRetriever.py`
+- `10-Retriever/07-MultiVectorRetriever.ipynb` -> `10-Retriever/07-MultiVectorRetriever.py`
+- `10-Retriever/08-SelfQueryRetriever.ipynb` -> `10-Retriever/08-SelfQueryRetriever.py`
+  - JSON filter 파싱 방식으로 재작성
+- `10-Retriever/09-TimeWeightedVectorStoreRetriever.ipynb` -> `10-Retriever/09-TimeWeightedVectorStoreRetriever.py`
+  - 시간 가중 점수 직접 계산
+- `10-Retriever/10-Kiwi-BM25Retriever.ipynb` -> `10-Retriever/10-Kiwi-BM25Retriever.py`
+  - `kiwipiepy` + `rank-bm25` 기반
+- `10-Retriever/11-CC-EnsembleRetriever.ipynb` -> `10-Retriever/11-CC-EnsembleRetriever.py`
+  - `langchain_teddynote` 제거 후 커스텀 조합으로 재작성
 
 ## 11-Reranker
 
 ### Ported
 
-- `11-Reranker/01-Cross-Encoder-Reranker.ipynb` -> [11-Reranker/01-Cross-Encoder-Reranker.py](/home/lys74/DEV/langchain-cookbook/11-Reranker/01-Cross-Encoder-Reranker.py)
-- 실습 데이터 복사 -> [11-Reranker/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/11-Reranker/data/appendix-keywords.txt)
+- `11-Reranker/01-Cross-Encoder-Reranker.ipynb` -> `11-Reranker/01-Cross-Encoder-Reranker.py`
+- `11-Reranker/04-FlashRank-Reranker.ipynb` -> `11-Reranker/04-FlashRank-Reranker.py`
 
-### Blocked
+### Removed
 
 - `11-Reranker/02-Cohere-Reranker.ipynb`
-  - 이유: Cohere 전용 API 예제임
-  - 해결 방안: 로컬 cross-encoder 또는 OpenRouter 기반 judge 체인으로 대체
-
 - `11-Reranker/03-Jina-Reranker.ipynb`
-  - 이유: Jina 전용 API/패키지에 의존함
-  - 해결 방안: 로컬 reranker 모델 또는 다른 오픈소스 reranker로 대체
-
-- `11-Reranker/04-FlashRank-Reranker.ipynb`
-  - 이유: `flashrank` 패키지가 현재 기본 구성에 없음
-  - 해결 방안: `flashrank` 추가 설치 후 별도 실습으로 분리하거나 현재 추가한 cross-encoder 예제로 대체
+  - 일회성 유료 provider 예제
 
 ## 12-RAG
 
 ### Ported
 
-- `12-RAG/00-RAG-Basic-PDF.ipynb` -> [12-RAG/00-RAG-Basic-PDF.py](/home/lys74/DEV/langchain-cookbook/12-RAG/00-RAG-Basic-PDF.py)
-  - 변경: PDF loader 대신 로컬 텍스트 문서 기반 RAG로 대체
-- `12-RAG/01-RAG-Basic-Webloader.ipynb` -> [12-RAG/01-RAG-Basic-Webloader.py](/home/lys74/DEV/langchain-cookbook/12-RAG/01-RAG-Basic-Webloader.py)
-  - 변경: HTML 로더 기반 RAG로 대체
-- `12-RAG/02-RAG-Advanced.ipynb` -> [12-RAG/02-RAG-Advanced.py](/home/lys74/DEV/langchain-cookbook/12-RAG/02-RAG-Advanced.py)
-  - 변경: multi-query 검색을 포함한 고급 RAG로 재구성
-- `12-RAG/03-Conversation-With-History.ipynb` -> [12-RAG/03-Conversation-With-History.py](/home/lys74/DEV/langchain-cookbook/12-RAG/03-Conversation-With-History.py)
-- `12-RAG/08-Web-Summarize-Chain-Of-Density.ipynb` -> [12-RAG/08-Web-Summarize-Chain-Of-Density.py](/home/lys74/DEV/langchain-cookbook/12-RAG/08-Web-Summarize-Chain-Of-Density.py)
-- 공용 RAG 유틸 추가 -> [src/langchain_cookbook/rag_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/rag_utils.py)
-- 실습 데이터 복사 -> [12-RAG/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/appendix-keywords.txt), [12-RAG/data/reference.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/reference.txt), [12-RAG/data/client.html](/home/lys74/DEV/langchain-cookbook/12-RAG/data/client.html), [12-RAG/data/chain-of-density.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/chain-of-density.txt)
+- `12-RAG/00-RAG-Basic-PDF.ipynb` -> `12-RAG/00-RAG-Basic-PDF.py`
+- `12-RAG/01-RAG-Basic-Webloader.ipynb` -> `12-RAG/01-RAG-Basic-Webloader.py`
+- `12-RAG/02-RAG-Advanced.ipynb` -> `12-RAG/02-RAG-Advanced.py`
+- `12-RAG/03-Conversation-With-History.ipynb` -> `12-RAG/03-Conversation-With-History.py`
+- `12-RAG/08-Web-Summarize-Chain-Of-Density.ipynb` -> `12-RAG/08-Web-Summarize-Chain-Of-Density.py`
 
-### Blocked
+### Moved To 17-OtherProvider
+
+- `12-RAG/10-Multi_modal_RAG-GPT-4o.ipynb` -> `17-OtherProvider/12-RAG-10-Multimodal-RAG.py`
+
+### Deferred
 
 - `12-RAG/04-RAPTOR-Long-Context-RAG-CODE.ipynb`
-  - 이유: RAPTOR clustering/UMAP/GMM 등 추가 데이터 과학 패키지와 복잡한 파이프라인 구현이 필요함
-  - 해결 방안: `numpy`, `pandas`, `scikit-learn`, `umap-learn` 등을 추가한 뒤 별도 long-context RAG 트랙으로 분리
-
 - `12-RAG/05-RAPTOR-Long-Context-RAG-PDF.ipynb`
-  - 이유: RAPTOR + PDF loader + 클러스터링 파이프라인이 필요함
-  - 해결 방안: PDF loader와 RAPTOR 의존성을 함께 추가해 별도 실습으로 분리
-
-- `12-RAG/10-Multi_modal_RAG-GPT-4o.ipynb`
-  - 이유: 멀티모달 입력과 PDF 이미지 추출, 전용 모델 의존성이 필요함
-  - 해결 방안: 멀티모달 지원 모델과 unstructured 패키지를 추가한 뒤 별도 트랙으로 분리
+  - 클러스터링/차원축소 계열 대규모 의존성이 필요함
 
 ## 13-LangChain-Expression-Language
 
 ### Ported
 
-- `13-LangChain-Expression-Language/01-RunnablePassthrough.ipynb` -> [13-LangChain-Expression-Language/01-RunnablePassthrough.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/01-RunnablePassthrough.py)
-- `13-LangChain-Expression-Language/02-Inspect-Runnables.ipynb` -> [13-LangChain-Expression-Language/02-Inspect-Runnables.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/02-Inspect-Runnables.py)
-- `13-LangChain-Expression-Language/03-RunnableLambda.ipynb` -> [13-LangChain-Expression-Language/03-RunnableLambda.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/03-RunnableLambda.py)
-- `13-LangChain-Expression-Language/04-Routing.ipynb` -> [13-LangChain-Expression-Language/04-Routing.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/04-Routing.py)
-- `13-LangChain-Expression-Language/05-RunnableParallel.ipynb` -> [13-LangChain-Expression-Language/05-RunnableParallel.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/05-RunnableParallel.py)
-- `13-LangChain-Expression-Language/07-ChainDecorator.ipynb` -> [13-LangChain-Expression-Language/07-ChainDecorator.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/07-ChainDecorator.py)
-- `13-LangChain-Expression-Language/08-RunnableWithMessageHistory.ipynb` -> [13-LangChain-Expression-Language/08-RunnableWithMessageHistory.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/08-RunnableWithMessageHistory.py)
-- `13-LangChain-Expression-Language/10-Binding.ipynb` -> [13-LangChain-Expression-Language/10-Binding.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/10-Binding.py)
-- 실습 데이터 복사 -> [13-LangChain-Expression-Language/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/data/appendix-keywords.txt)
-
-### Blocked
-
-- `13-LangChain-Expression-Language/06-Configure.ipynb`
-  - 이유: 원본 예제가 multi-provider configurable 대체 모델 구성을 포함함
-  - 해결 방안: 단일 OpenRouter 모델 기준 configurable field 예제로 별도 재작성
-
-- `13-LangChain-Expression-Language/09-Custom-Generator.ipynb`
-  - 이유: 전용 generator 인터페이스를 현재 저장소 스타일에 맞게 다시 설계해야 함
-  - 해결 방안: `RunnableLambda` 또는 custom runnable 클래스로 별도 재작성
-
-- `13-LangChain-Expression-Language/11-Fallbacks.ipynb`
-  - 이유: provider fallback과 예외 시뮬레이션이 여러 외부 모델 전제를 가짐
-  - 해결 방안: OpenRouter 단일 모델 안에서 retry/fallback 정책 예제로 재작성
+- `13-LangChain-Expression-Language/01-RunnablePassthrough.ipynb` -> `13-LangChain-Expression-Language/01-RunnablePassthrough.py`
+- `13-LangChain-Expression-Language/02-Inspect-Runnables.ipynb` -> `13-LangChain-Expression-Language/02-Inspect-Runnables.py`
+- `13-LangChain-Expression-Language/03-RunnableLambda.ipynb` -> `13-LangChain-Expression-Language/03-RunnableLambda.py`
+- `13-LangChain-Expression-Language/04-Routing.ipynb` -> `13-LangChain-Expression-Language/04-Routing.py`
+- `13-LangChain-Expression-Language/05-RunnableParallel.ipynb` -> `13-LangChain-Expression-Language/05-RunnableParallel.py`
+- `13-LangChain-Expression-Language/06-Configure.ipynb` -> `13-LangChain-Expression-Language/06-Configure.py`
+- `13-LangChain-Expression-Language/07-ChainDecorator.ipynb` -> `13-LangChain-Expression-Language/07-ChainDecorator.py`
+- `13-LangChain-Expression-Language/08-RunnableWithMessageHistory.ipynb` -> `13-LangChain-Expression-Language/08-RunnableWithMessageHistory.py`
+- `13-LangChain-Expression-Language/09-Custom-Generator.ipynb` -> `13-LangChain-Expression-Language/09-Custom-Generator.py`
+- `13-LangChain-Expression-Language/10-Binding.ipynb` -> `13-LangChain-Expression-Language/10-Binding.py`
+- `13-LangChain-Expression-Language/11-Fallbacks.ipynb` -> `13-LangChain-Expression-Language/11-Fallbacks.py`
 
 ## 14-Chains
 
 ### Ported
 
-- `14-Chains/01-Summary.ipynb` -> [14-Chains/01-Summary.py](/home/lys74/DEV/langchain-cookbook/14-Chains/01-Summary.py)
-- `14-Chains/02-SQL.ipynb` -> [14-Chains/02-SQL.py](/home/lys74/DEV/langchain-cookbook/14-Chains/02-SQL.py)
-  - 변경: `Chinook.db` 대신 현재 사용 가능한 [finance.db](/home/lys74/DEV/langchain-cookbook/14-Chains/data/finance.db) 기준 SQL chain으로 재구성
-- `14-Chains/03-Structured-Output-Chain.ipynb` -> [14-Chains/03-Structured-Output-Chain.py](/home/lys74/DEV/langchain-cookbook/14-Chains/03-Structured-Output-Chain.py)
-- 실습 데이터 복사 -> [14-Chains/data/news.txt](/home/lys74/DEV/langchain-cookbook/14-Chains/data/news.txt), [14-Chains/data/finance.db](/home/lys74/DEV/langchain-cookbook/14-Chains/data/finance.db)
-
-### Blocked
-
-- `14-Chains/04-Structured-Data-Chat.ipynb`
-  - 이유: dataframe/chat agent와 experimental toolkit 의존성이 현재 기본 구성에 없음
-  - 해결 방안: `pandas`와 dataframe agent 의존성을 추가한 뒤 별도 재작성
+- `14-Chains/01-Summary.ipynb` -> `14-Chains/01-Summary.py`
+- `14-Chains/02-SQL.ipynb` -> `14-Chains/02-SQL.py`
+- `14-Chains/03-Structured-Output-Chain.ipynb` -> `14-Chains/03-Structured-Output-Chain.py`
+- `14-Chains/04-Structured-Data-Chat.ipynb` -> `14-Chains/04-Structured-Data-Chat.py`
 
 ## 15-Agent
 
 ### Ported
 
-- `15-Agent/01-Tools.ipynb` -> [15-Agent/01-Tools.py](/home/lys74/DEV/langchain-cookbook/15-Agent/01-Tools.py)
-  - 변경: 외부 검색/이미지 생성 도구 대신 로컬 도구 예제로 재구성
-- `15-Agent/02-Bind-Tools.ipynb` -> [15-Agent/02-Bind-Tools.py](/home/lys74/DEV/langchain-cookbook/15-Agent/02-Bind-Tools.py)
-- `15-Agent/03-Agent.ipynb` -> [15-Agent/03-Agent.py](/home/lys74/DEV/langchain-cookbook/15-Agent/03-Agent.py)
-- `15-Agent/06-Agentic-RAG.ipynb` -> [15-Agent/06-Agentic-RAG.py](/home/lys74/DEV/langchain-cookbook/15-Agent/06-Agentic-RAG.py)
-  - 변경: 로컬 문서 retriever tool 기반 agentic RAG로 재구성
-- 실습 데이터 복사 -> [15-Agent/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/appendix-keywords.txt), [15-Agent/data/의대증원찬성.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/의대증원찬성.txt), [15-Agent/data/의대증원반대.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/의대증원반대.txt)
+- `15-Agent/01-Tools.ipynb` -> `15-Agent/01-Tools.py`
+- `15-Agent/02-Bind-Tools.ipynb` -> `15-Agent/02-Bind-Tools.py`
+- `15-Agent/03-Agent.ipynb` -> `15-Agent/03-Agent.py`
+- `15-Agent/05-Iter-Human-In-the-Loop.ipynb` -> `15-Agent/05-Iter-Human-In-the-Loop.py`
+- `15-Agent/06-Agentic-RAG.ipynb` -> `15-Agent/06-Agentic-RAG.py`
+- `15-Agent/07-CSV-Excel-Agent.ipynb` -> `15-Agent/07-CSV-Excel-Agent.py`
+- `15-Agent/08-Agent-Toolkits-File-Management.ipynb` -> `15-Agent/08-Agent-Toolkits-File-Management.py`
+- `15-Agent/10-Two-Agent-Debate-With-Tools.ipynb` -> `15-Agent/10-Two-Agent-Debate-With-Tools.py`
 
-### Blocked
-
-- `15-Agent/04-Agent-More-LLMs.ipynb`
-  - 이유: 다중 provider 비교 예제로 단일 OpenRouter 모델 기준과 맞지 않음
-  - 해결 방안: 단일 모델 agent 성능 비교 실험으로 재작성
-
-- `15-Agent/05-Iter-Human-In-the-Loop.ipynb`
-  - 이유: 인터럽트/검토 루프를 위한 추가 상태 관리 구현이 필요함
-  - 해결 방안: LangGraph 또는 middleware 기반 human approval 예제로 별도 재작성
-
-- `15-Agent/07-CSV-Excel-Agent.ipynb`
-  - 이유: dataframe/excel toolkit과 추가 의존성이 필요함
-  - 해결 방안: `pandas`와 dataframe agent 패키지 추가 후 재작성
-
-- `15-Agent/08-Agent-Toolkits-File-Management.ipynb`
-  - 이유: 파일 관리 toolkit과 권한 제어 예제가 현재 기본 구성에 없음
-  - 해결 방안: 허용된 작업 경로를 가진 로컬 파일 도구 세트로 재작성
+### Removed
 
 - `15-Agent/09-Agent-Report-With-Image-Generation.ipynb`
-  - 이유: 이미지 생성 API와 외부 검색 도구가 필요함
-  - 해결 방안: 로컬 보고서 생성 agent와 별도 이미지 생성 파이프라인으로 분리
+  - 이미지 생성 및 외부 검색 API 의존
 
-- `15-Agent/10-Two-Agent-Debate-With-Tools.ipynb`
-  - 이유: 다중 agent orchestration 로직을 별도 설계해야 함
-  - 해결 방안: 두 개의 `create_agent` 인스턴스를 조정하는 토론 예제로 재작성
+### Deferred
 
+- `15-Agent/04-Agent-More-LLMs.ipynb`
+  - 비교 대상 모델 범위를 별도로 다시 정의해야 함
 - `15-Agent/12-React-Agent.ipynb`
-  - 이유: LangGraph 및 전용 react agent 흐름에 의존함
-  - 해결 방안: LangGraph 의존성을 추가한 뒤 별도 agent graph 트랙으로 분리
+  - LangGraph 와 외부 검색 도구 구성이 추가로 필요함
 
 ## 16-Evaluations
 
 ### Ported
 
-- `16-Evaluations/01-Test-Dataset-Generator-RAGAS.ipynb` -> [16-Evaluations/01-Test-Dataset-Generator-RAGAS.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/01-Test-Dataset-Generator-RAGAS.py)
-  - 변경: RAGAS testset generator 대신 로컬 문서 기반 평가셋 생성 스크립트로 대체
-- `16-Evaluations/02-Evaluation-Using-RAGAS.ipynb` -> [16-Evaluations/02-Evaluation-Using-RAGAS.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/02-Evaluation-Using-RAGAS.py)
-  - 변경: RAGAS metric 대신 heuristic overlap + 로컬 임베딩 similarity 평가로 대체
-- 공용 평가용 RAG helper 추가 -> [16-Evaluations/myrag.py](/home/lys74/DEV/langchain-cookbook/16-Evaluations/myrag.py)
-- 샘플 평가 데이터 추가 -> [16-Evaluations/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/16-Evaluations/data/appendix-keywords.txt), [16-Evaluations/data/rag_eval.csv](/home/lys74/DEV/langchain-cookbook/16-Evaluations/data/rag_eval.csv)
+- `16-Evaluations/01-Test-Dataset-Generator-RAGAS.ipynb` -> `16-Evaluations/01-Test-Dataset-Generator-RAGAS.py`
+- `16-Evaluations/02-Evaluation-Using-RAGAS.ipynb` -> `16-Evaluations/02-Evaluation-Using-RAGAS.py`
 
-### Blocked
+### Moved To 17-OtherProvider
 
-- `16-Evaluations/03-Translate-HF-Upload.ipynb`
-  - 이유: Hugging Face dataset 업로드와 외부 서비스 의존성이 필요함
-  - 해결 방안: 로컬 번역 결과 저장 예제로 분리하거나 HF 자격 증명 추가 후 재작성
+- `16-Evaluations/03-Translate-HF-Upload.ipynb` -> `17-OtherProvider/16-Evaluations-03-HuggingFace-Translate-Upload.py`
+- `16-Evaluations/04-LangSmith-Dataset.ipynb` -> `17-OtherProvider/16-Evaluations-04-LangSmith-Dataset.py`
+- `16-Evaluations/05-LangSmith-LLM-as-Judge.ipynb` -> `17-OtherProvider/16-Evaluations-05-LangSmith-LLM-as-Judge.py`
+- `16-Evaluations/06-LangSmith-Embedding-Distance-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-06-LangSmith-Embedding-Distance.py`
+- `16-Evaluations/07-LangSmith-Custom-LLM-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-07-LangSmith-Custom-LLM-Evaluation.py`
+- `16-Evaluations/08-LangSmith-Heuristic-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-08-LangSmith-Heuristic-Evaluation.py`
+- `16-Evaluations/09-LangSmith-Compare-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-09-LangSmith-Compare-Evaluation.py`
+- `16-Evaluations/10-LangSmith-Summary-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-10-LangSmith-Summary-Evaluation.py`
+- `16-Evaluations/11-LangSmith-Groundedness-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-11-LangSmith-Groundedness-Evaluation.py`
+- `16-Evaluations/12-LangSmith-Pairwise-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-12-LangSmith-Pairwise-Evaluation.py`
+- `16-Evaluations/13-LangSmith-Repeat-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-13-LangSmith-Repeat-Evaluation.py`
+- `16-Evaluations/14-LangSmith-Online-Evaluation.ipynb` -> `17-OtherProvider/16-Evaluations-14-LangSmith-Online-Evaluation.py`
 
-- `16-Evaluations/04-LangSmith-Dataset.ipynb`
-  - 이유: LangSmith 서비스 의존
-  - 해결 방안: 로컬 CSV/JSONL dataset 관리 예제로 대체
+## 17-OtherProvider
 
-- `16-Evaluations/05-LangSmith-LLM-as-Judge.ipynb`
-  - 이유: LangSmith evaluator 실행 환경 의존
-  - 해결 방안: 로컬 judge chain으로 대체
+### Ported
 
-- `16-Evaluations/06-LangSmith-Embedding-Distance-Evaluation.ipynb`
-  - 이유: LangSmith 평가 서비스 의존
-  - 해결 방안: 현재 추가한 로컬 embedding similarity 평가로 대체 가능
+- LangSmith prompt / prompt registry examples
+- Hugging Face endpoint / dataset upload examples
+- LangSmith dataset / judge / embedding distance / heuristic / summary / groundedness / pairwise / repeat / online evaluation examples
+- 멀티모달 전용 모델 예제
 
-- `16-Evaluations/07-LangSmith-Custom-LLM-Evaluation.ipynb`
-  - 이유: LangSmith evaluator registry 의존
-  - 해결 방안: 로컬 custom evaluator 함수로 재작성
+### Removed
 
-- `16-Evaluations/08-LangSmith-Heuristic-Evaluation.ipynb`
-  - 이유: LangSmith 실행 환경과 추가 평가 패키지 의존
-  - 해결 방안: 로컬 heuristic scorer 스크립트로 재작성
+- Google Gemini
+- Upstage
+- Pinecone
+- Cohere
+- Jina
+- LlamaParse
 
-- `16-Evaluations/09-LangSmith-Compare-Evaluation.ipynb`
-  - 이유: LangSmith 비교 평가 서비스 의존
-  - 해결 방안: 두 모델 출력 CSV를 비교하는 로컬 스크립트로 재작성
+### Reason
 
-- `16-Evaluations/10-LangSmith-Summary-Evaluation.ipynb`
-  - 이유: LangSmith summary evaluator 의존
-  - 해결 방안: 로컬 요약 평가 지표 스크립트로 재작성
-
-- `16-Evaluations/11-LangSmith-Groundedness-Evaluation.ipynb`
-  - 이유: LangSmith groundedness evaluator 의존
-  - 해결 방안: context overlap 기반 groundedness evaluator로 재작성
-
-- `16-Evaluations/12-LangSmith-Pairwise-Evaluation.ipynb`
-  - 이유: LangSmith pairwise evaluator 의존
-  - 해결 방안: 두 답변을 비교하는 로컬 judge chain으로 재작성
-
-- `16-Evaluations/13-LangSmith-Repeat-Evaluation.ipynb`
-  - 이유: LangSmith 반복 실행 관리 의존
-  - 해결 방안: 로컬 batch evaluator 스크립트로 재작성
-
-- `16-Evaluations/14-LangSmith-Online-Evaluation.ipynb`
-  - 이유: LangSmith online evaluation 환경 의존
-  - 해결 방안: 애플리케이션 로그 기반 offline evaluator로 재작성
+- 무료 핵심 서비스가 아닌 예제는 현재 저장소의 기본 학습 흐름과 거리가 멀고, 대부분 별도 유료 API 또는 서비스 운영 단계를 전제로 함
