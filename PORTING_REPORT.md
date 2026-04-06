@@ -364,3 +364,19 @@
 - `13-LangChain-Expression-Language/11-Fallbacks.ipynb`
   - 이유: provider fallback과 예외 시뮬레이션이 여러 외부 모델 전제를 가짐
   - 해결 방안: OpenRouter 단일 모델 안에서 retry/fallback 정책 예제로 재작성
+
+## 14-Chains
+
+### Ported
+
+- `14-Chains/01-Summary.ipynb` -> [14-Chains/01-Summary.py](/home/lys74/DEV/langchain-cookbook/14-Chains/01-Summary.py)
+- `14-Chains/02-SQL.ipynb` -> [14-Chains/02-SQL.py](/home/lys74/DEV/langchain-cookbook/14-Chains/02-SQL.py)
+  - 변경: `Chinook.db` 대신 현재 사용 가능한 [finance.db](/home/lys74/DEV/langchain-cookbook/14-Chains/data/finance.db) 기준 SQL chain으로 재구성
+- `14-Chains/03-Structured-Output-Chain.ipynb` -> [14-Chains/03-Structured-Output-Chain.py](/home/lys74/DEV/langchain-cookbook/14-Chains/03-Structured-Output-Chain.py)
+- 실습 데이터 복사 -> [14-Chains/data/news.txt](/home/lys74/DEV/langchain-cookbook/14-Chains/data/news.txt), [14-Chains/data/finance.db](/home/lys74/DEV/langchain-cookbook/14-Chains/data/finance.db)
+
+### Blocked
+
+- `14-Chains/04-Structured-Data-Chat.ipynb`
+  - 이유: dataframe/chat agent와 experimental toolkit 의존성이 현재 기본 구성에 없음
+  - 해결 방안: `pandas`와 dataframe agent 의존성을 추가한 뒤 별도 재작성
