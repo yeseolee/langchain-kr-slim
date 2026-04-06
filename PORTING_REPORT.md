@@ -336,3 +336,31 @@
 - `12-RAG/10-Multi_modal_RAG-GPT-4o.ipynb`
   - 이유: 멀티모달 입력과 PDF 이미지 추출, 전용 모델 의존성이 필요함
   - 해결 방안: 멀티모달 지원 모델과 unstructured 패키지를 추가한 뒤 별도 트랙으로 분리
+
+## 13-LangChain-Expression-Language
+
+### Ported
+
+- `13-LangChain-Expression-Language/01-RunnablePassthrough.ipynb` -> [13-LangChain-Expression-Language/01-RunnablePassthrough.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/01-RunnablePassthrough.py)
+- `13-LangChain-Expression-Language/02-Inspect-Runnables.ipynb` -> [13-LangChain-Expression-Language/02-Inspect-Runnables.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/02-Inspect-Runnables.py)
+- `13-LangChain-Expression-Language/03-RunnableLambda.ipynb` -> [13-LangChain-Expression-Language/03-RunnableLambda.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/03-RunnableLambda.py)
+- `13-LangChain-Expression-Language/04-Routing.ipynb` -> [13-LangChain-Expression-Language/04-Routing.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/04-Routing.py)
+- `13-LangChain-Expression-Language/05-RunnableParallel.ipynb` -> [13-LangChain-Expression-Language/05-RunnableParallel.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/05-RunnableParallel.py)
+- `13-LangChain-Expression-Language/07-ChainDecorator.ipynb` -> [13-LangChain-Expression-Language/07-ChainDecorator.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/07-ChainDecorator.py)
+- `13-LangChain-Expression-Language/08-RunnableWithMessageHistory.ipynb` -> [13-LangChain-Expression-Language/08-RunnableWithMessageHistory.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/08-RunnableWithMessageHistory.py)
+- `13-LangChain-Expression-Language/10-Binding.ipynb` -> [13-LangChain-Expression-Language/10-Binding.py](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/10-Binding.py)
+- 실습 데이터 복사 -> [13-LangChain-Expression-Language/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/13-LangChain-Expression-Language/data/appendix-keywords.txt)
+
+### Blocked
+
+- `13-LangChain-Expression-Language/06-Configure.ipynb`
+  - 이유: 원본 예제가 multi-provider configurable 대체 모델 구성을 포함함
+  - 해결 방안: 단일 OpenRouter 모델 기준 configurable field 예제로 별도 재작성
+
+- `13-LangChain-Expression-Language/09-Custom-Generator.ipynb`
+  - 이유: 전용 generator 인터페이스를 현재 저장소 스타일에 맞게 다시 설계해야 함
+  - 해결 방안: `RunnableLambda` 또는 custom runnable 클래스로 별도 재작성
+
+- `13-LangChain-Expression-Language/11-Fallbacks.ipynb`
+  - 이유: provider fallback과 예외 시뮬레이션이 여러 외부 모델 전제를 가짐
+  - 해결 방안: OpenRouter 단일 모델 안에서 retry/fallback 정책 예제로 재작성
