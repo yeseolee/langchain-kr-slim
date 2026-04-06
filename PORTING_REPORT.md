@@ -380,3 +380,45 @@
 - `14-Chains/04-Structured-Data-Chat.ipynb`
   - 이유: dataframe/chat agent와 experimental toolkit 의존성이 현재 기본 구성에 없음
   - 해결 방안: `pandas`와 dataframe agent 의존성을 추가한 뒤 별도 재작성
+
+## 15-Agent
+
+### Ported
+
+- `15-Agent/01-Tools.ipynb` -> [15-Agent/01-Tools.py](/home/lys74/DEV/langchain-cookbook/15-Agent/01-Tools.py)
+  - 변경: 외부 검색/이미지 생성 도구 대신 로컬 도구 예제로 재구성
+- `15-Agent/02-Bind-Tools.ipynb` -> [15-Agent/02-Bind-Tools.py](/home/lys74/DEV/langchain-cookbook/15-Agent/02-Bind-Tools.py)
+- `15-Agent/03-Agent.ipynb` -> [15-Agent/03-Agent.py](/home/lys74/DEV/langchain-cookbook/15-Agent/03-Agent.py)
+- `15-Agent/06-Agentic-RAG.ipynb` -> [15-Agent/06-Agentic-RAG.py](/home/lys74/DEV/langchain-cookbook/15-Agent/06-Agentic-RAG.py)
+  - 변경: 로컬 문서 retriever tool 기반 agentic RAG로 재구성
+- 실습 데이터 복사 -> [15-Agent/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/appendix-keywords.txt), [15-Agent/data/의대증원찬성.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/의대증원찬성.txt), [15-Agent/data/의대증원반대.txt](/home/lys74/DEV/langchain-cookbook/15-Agent/data/의대증원반대.txt)
+
+### Blocked
+
+- `15-Agent/04-Agent-More-LLMs.ipynb`
+  - 이유: 다중 provider 비교 예제로 단일 OpenRouter 모델 기준과 맞지 않음
+  - 해결 방안: 단일 모델 agent 성능 비교 실험으로 재작성
+
+- `15-Agent/05-Iter-Human-In-the-Loop.ipynb`
+  - 이유: 인터럽트/검토 루프를 위한 추가 상태 관리 구현이 필요함
+  - 해결 방안: LangGraph 또는 middleware 기반 human approval 예제로 별도 재작성
+
+- `15-Agent/07-CSV-Excel-Agent.ipynb`
+  - 이유: dataframe/excel toolkit과 추가 의존성이 필요함
+  - 해결 방안: `pandas`와 dataframe agent 패키지 추가 후 재작성
+
+- `15-Agent/08-Agent-Toolkits-File-Management.ipynb`
+  - 이유: 파일 관리 toolkit과 권한 제어 예제가 현재 기본 구성에 없음
+  - 해결 방안: 허용된 작업 경로를 가진 로컬 파일 도구 세트로 재작성
+
+- `15-Agent/09-Agent-Report-With-Image-Generation.ipynb`
+  - 이유: 이미지 생성 API와 외부 검색 도구가 필요함
+  - 해결 방안: 로컬 보고서 생성 agent와 별도 이미지 생성 파이프라인으로 분리
+
+- `15-Agent/10-Two-Agent-Debate-With-Tools.ipynb`
+  - 이유: 다중 agent orchestration 로직을 별도 설계해야 함
+  - 해결 방안: 두 개의 `create_agent` 인스턴스를 조정하는 토론 예제로 재작성
+
+- `15-Agent/12-React-Agent.ipynb`
+  - 이유: LangGraph 및 전용 react agent 흐름에 의존함
+  - 해결 방안: LangGraph 의존성을 추가한 뒤 별도 agent graph 트랙으로 분리
