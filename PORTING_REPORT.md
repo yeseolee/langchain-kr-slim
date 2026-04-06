@@ -228,3 +228,19 @@
 - `08-Embeddings/07-GPT4ALL.ipynb`
   - 이유: GPT4All 런타임과 모델 파일이 필요함
   - 해결 방안: 로컬 모델 런타임 가이드를 별도 추가
+
+## 09-VectorStore
+
+### Ported
+
+- `09-VectorStore/01-Chroma.ipynb` -> [09-VectorStore/01-Chroma.py](/home/lys74/DEV/langchain-cookbook/09-VectorStore/01-Chroma.py)
+  - 변경: Chroma 대신 `InMemoryVectorStore` 로 CRUD와 검색 흐름을 유지
+- `09-VectorStore/02-FAISS.ipynb` -> [09-VectorStore/02-FAISS.py](/home/lys74/DEV/langchain-cookbook/09-VectorStore/02-FAISS.py)
+  - 변경: FAISS 대신 `InMemoryVectorStore` 로 유사도 검색과 retriever 변환 흐름을 유지
+- 실습 데이터 복사 -> [09-VectorStore/data/nlp-keywords.txt](/home/lys74/DEV/langchain-cookbook/09-VectorStore/data/nlp-keywords.txt), [09-VectorStore/data/finance-keywords.txt](/home/lys74/DEV/langchain-cookbook/09-VectorStore/data/finance-keywords.txt)
+
+### Blocked
+
+- `09-VectorStore/03-Pinecone.ipynb`
+  - 이유: Pinecone 외부 서비스, 전용 계정, 인덱스 운영 기능에 의존함
+  - 해결 방안: Pinecone 전용 실습으로 분리하거나 하이브리드 검색을 로컬 벡터스토어 + BM25 조합으로 재작성
