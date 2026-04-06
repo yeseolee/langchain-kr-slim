@@ -307,3 +307,32 @@
 - `11-Reranker/04-FlashRank-Reranker.ipynb`
   - 이유: `flashrank` 패키지가 현재 기본 구성에 없음
   - 해결 방안: `flashrank` 추가 설치 후 별도 실습으로 분리하거나 현재 추가한 cross-encoder 예제로 대체
+
+## 12-RAG
+
+### Ported
+
+- `12-RAG/00-RAG-Basic-PDF.ipynb` -> [12-RAG/00-RAG-Basic-PDF.py](/home/lys74/DEV/langchain-cookbook/12-RAG/00-RAG-Basic-PDF.py)
+  - 변경: PDF loader 대신 로컬 텍스트 문서 기반 RAG로 대체
+- `12-RAG/01-RAG-Basic-Webloader.ipynb` -> [12-RAG/01-RAG-Basic-Webloader.py](/home/lys74/DEV/langchain-cookbook/12-RAG/01-RAG-Basic-Webloader.py)
+  - 변경: HTML 로더 기반 RAG로 대체
+- `12-RAG/02-RAG-Advanced.ipynb` -> [12-RAG/02-RAG-Advanced.py](/home/lys74/DEV/langchain-cookbook/12-RAG/02-RAG-Advanced.py)
+  - 변경: multi-query 검색을 포함한 고급 RAG로 재구성
+- `12-RAG/03-Conversation-With-History.ipynb` -> [12-RAG/03-Conversation-With-History.py](/home/lys74/DEV/langchain-cookbook/12-RAG/03-Conversation-With-History.py)
+- `12-RAG/08-Web-Summarize-Chain-Of-Density.ipynb` -> [12-RAG/08-Web-Summarize-Chain-Of-Density.py](/home/lys74/DEV/langchain-cookbook/12-RAG/08-Web-Summarize-Chain-Of-Density.py)
+- 공용 RAG 유틸 추가 -> [src/langchain_cookbook/rag_utils.py](/home/lys74/DEV/langchain-cookbook/src/langchain_cookbook/rag_utils.py)
+- 실습 데이터 복사 -> [12-RAG/data/appendix-keywords.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/appendix-keywords.txt), [12-RAG/data/reference.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/reference.txt), [12-RAG/data/client.html](/home/lys74/DEV/langchain-cookbook/12-RAG/data/client.html), [12-RAG/data/chain-of-density.txt](/home/lys74/DEV/langchain-cookbook/12-RAG/data/chain-of-density.txt)
+
+### Blocked
+
+- `12-RAG/04-RAPTOR-Long-Context-RAG-CODE.ipynb`
+  - 이유: RAPTOR clustering/UMAP/GMM 등 추가 데이터 과학 패키지와 복잡한 파이프라인 구현이 필요함
+  - 해결 방안: `numpy`, `pandas`, `scikit-learn`, `umap-learn` 등을 추가한 뒤 별도 long-context RAG 트랙으로 분리
+
+- `12-RAG/05-RAPTOR-Long-Context-RAG-PDF.ipynb`
+  - 이유: RAPTOR + PDF loader + 클러스터링 파이프라인이 필요함
+  - 해결 방안: PDF loader와 RAPTOR 의존성을 함께 추가해 별도 실습으로 분리
+
+- `12-RAG/10-Multi_modal_RAG-GPT-4o.ipynb`
+  - 이유: 멀티모달 입력과 PDF 이미지 추출, 전용 모델 의존성이 필요함
+  - 해결 방안: 멀티모달 지원 모델과 unstructured 패키지를 추가한 뒤 별도 트랙으로 분리
