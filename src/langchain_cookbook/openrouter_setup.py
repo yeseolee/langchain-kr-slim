@@ -5,69 +5,21 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
-import requests
 from dotenv import dotenv_values
-from langchain_core.embeddings import Embeddings
 from langchain_openai import ChatOpenAI
 
 API_KEY_PLACEHOLDER = "YOUR_OPENROUTER_API_KEY_HERE"
-SMALL_MODEL_TEMPERATURE = 0.3
-LARGE_MODEL_TEMPERATURE = 0.1
+DEFAULT_BASE_URL = "https://openrouter.ai/api/v1"
+DEFAULT_MODEL = "openai/gpt-oss-20b:free"
+DEFAULT_TEMPERATURE = 0.2
 MAX_RETRIES = 3
-EMBED_TIKTOKEN_ENABLED = False
-CHECK_EMBEDDING_CTX_LENGTH = False
 
 
 @dataclass(frozen=True)
 class OpenRouterSettings:
     base_url: str
     api_key: str
-    small_model: str
-    large_model: str
-    embedding_model: str
-    site_url: str
-    app_name: str
-
-
-class OpenRouterEmbeddings(Embeddings):
-    def __init__(
-        self,
-        *,
-        base_url: str,
-        api_key: str,
-        model: str,
-        timeout: int = 60,
-    ) -> None:
-        self.base_url = base_url.rstrip("/")
-        self.api_key = api_key
-        self.model = model
-        self.timeout = timeout
-
-    def _post_embeddings(self, input_value: str | list[str]) -> list[list[float]]:
-        response = requests.post(
-            f"{self.base_url}/embeddings",
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": self.model,
-                "input": input_value,
-            },
-            timeout=self.timeout,
-        )
-        response.raise_for_status()
-        payload = response.json()
-        data = payload.get("data", [])
-        if not data:
-            raise ValueError(f"No embedding data received: {payload}")
-        return [item["embedding"] for item in data]
-
-    def embed_documents(self, texts: list[str]) -> list[list[float]]:
-        return self._post_embeddings(texts)
-
-    def embed_query(self, text: str) -> list[float]:
-        return self._post_embeddings(text)[0]
+    model: str
 
 
 def _iter_search_roots() -> list[Path]:
@@ -146,42 +98,18 @@ def load_openrouter_settings() -> OpenRouterSettings:
     os.environ["OPENROUTER_API_KEY"] = api_key
 
     return OpenRouterSettings(
-        base_url=_read_required_env(env_values, "OPENROUTER_BASE_URL"),
+        base_url=env_values.get("OPENROUTER_BASE_URL", DEFAULT_BASE_URL),
         api_key=api_key,
-        small_model=_read_required_env(env_values, "OPENROUTER_SMALL_MODEL"),
-        large_model=_read_required_env(env_values, "OPENROUTER_LARGE_MODEL"),
-        embedding_model=_read_required_env(env_values, "OPENROUTER_EMBED_MODEL"),
-        site_url=env_values.get("OPENROUTER_SITE_URL", ""),
-        app_name=env_values.get("OPENROUTER_APP_NAME", ""),
+        model=env_values.get("OPENROUTER_MODEL", DEFAULT_MODEL),
     )
 
 
-def make_chat_model(model_name: str, temperature: float) -> ChatOpenAI:
+def make_chat_model(temperature: float = DEFAULT_TEMPERATURE) -> ChatOpenAI:
     settings = load_openrouter_settings()
     return ChatOpenAI(
-        model=model_name,
+        model=settings.model,
         base_url=settings.base_url,
         api_key=settings.api_key,
         temperature=temperature,
         max_retries=MAX_RETRIES,
-    )
-
-
-def make_small_chat_model() -> ChatOpenAI:
-    settings = load_openrouter_settings()
-    return make_chat_model(settings.small_model, SMALL_MODEL_TEMPERATURE)
-
-
-def make_large_chat_model() -> ChatOpenAI:
-    settings = load_openrouter_settings()
-    return make_chat_model(settings.large_model, LARGE_MODEL_TEMPERATURE)
-
-
-def make_embeddings(model_name: str | None = None) -> OpenRouterEmbeddings:
-    settings = load_openrouter_settings()
-    resolved_model = model_name or settings.embedding_model
-    return OpenRouterEmbeddings(
-        model=resolved_model,
-        base_url=settings.base_url,
-        api_key=settings.api_key,
     )
